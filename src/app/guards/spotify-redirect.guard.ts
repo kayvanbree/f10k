@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {PlayerSpotifyService} from '../store/providers/player-spotify.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +7,6 @@ import {PlayerSpotifyService} from '../store/providers/player-spotify.service';
 export class SpotifyRedirectGuard implements CanActivate {
   constructor(
     private router: Router,
-    private player: PlayerSpotifyService,
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -35,8 +33,5 @@ export class SpotifyRedirectGuard implements CanActivate {
 
     this.router.navigate(['']);
     return true;
-
-    // this.router.navigate(['login']);
-    // return false;
   }
 }

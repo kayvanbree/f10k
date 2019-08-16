@@ -2,7 +2,6 @@ import {Action, State, StateContext} from '@ngxs/store';
 import {SearchStateModel} from '../models/search-state.model';
 import {Search, SearchSuccess} from '../actions/search.actions';
 import {SearchSpotifyService} from '../providers/search-spotify.service';
-import {RouterNavigation} from '@ngxs/router-plugin';
 
 @State<SearchStateModel>({
   name: 'search',
@@ -13,16 +12,6 @@ import {RouterNavigation} from '@ngxs/router-plugin';
 })
 export class SearchState {
   constructor(private searchService: SearchSpotifyService) {}
-
-  @Action(RouterNavigation)
-  public routerNavigation(ctx: StateContext<SearchStateModel>, action: RouterNavigation) {
-    const state = ctx.getState();
-    ctx.patchState({
-      ...state,
-      query: '',
-      results: null,
-    });
-  }
 
   @Action(Search)
   public search(ctx: StateContext<SearchStateModel>, action: Search) {

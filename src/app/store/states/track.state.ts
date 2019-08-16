@@ -11,9 +11,6 @@ import {
   RemoveTrack,
   SaveTrack, ImportTracksFromPlaylist, ImportTracksFromPlaylistSuccess
 } from '../actions/track.actions';
-import {RouterNavigation} from '@ngxs/router-plugin';
-import {SearchStateModel} from '../models/search-state.model';
-import {Search} from '../actions/search.actions';
 
 @State<TrackStateModel>({
   name: 'tracks',
@@ -32,15 +29,6 @@ export class TrackState {
   }
 
   constructor(private trackService: TrackSpotifyService) {}
-
-  @Action(RouterNavigation)
-  public routerNavigation(ctx: StateContext<TrackStateModel>, action: RouterNavigation) {
-    const state = ctx.getState();
-    ctx.patchState({
-      ...state,
-      tracks: [],
-    });
-  }
 
   @Action(GetTracks)
   public getTracks(ctx: StateContext<TrackStateModel>, action: GetTracks) {
