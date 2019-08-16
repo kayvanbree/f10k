@@ -88,6 +88,19 @@ export class PlayerSpotifyService {
       ));
     });
     this.initialized = true;
+
+    setInterval(() => {
+      this.player.getCurrentState().then((playbackState) => {
+        if (playbackState) {
+          this.store.dispatch(new UpdatePlayerStatus(
+            playbackState.track_window.current_track,
+            playbackState.duration,
+            playbackState.position,
+            playbackState.paused,
+          ));
+        }
+      });
+    }, 1000);
   }
 
   playTrack(ids: string[], id: string, deviceId: string, current: boolean) {
@@ -103,6 +116,14 @@ export class PlayerSpotifyService {
 
   togglePlay() {
     this.player.togglePlay();
+  }
+
+  next() {
+    return this.http.post(`${this.config.apiBase}/me/player/next`, {});
+  }
+
+  previous() {
+    return this.http.post(`${this.config.apiBase}/me/player/previous`, {});
   }
 
   disconnect() {

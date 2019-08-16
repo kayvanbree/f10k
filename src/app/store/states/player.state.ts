@@ -58,11 +58,11 @@ export class PlayerState {
 
   @Action(NextTrack)
   public nextTrack(ctx: StateContext<PlayerStateModel>, action: NextTrack) {
-
+    this.playerService.next().subscribe();
   }
 
   @Action(PreviousTrack)
   public previousTrack(ctx: StateContext<PlayerStateModel>, action: PreviousTrack) {
-
+    this.playerService.previous().subscribe();
   }
 }
