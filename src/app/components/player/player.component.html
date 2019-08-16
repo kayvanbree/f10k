@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="column">
+    <div *ngIf="player?.current_track" class="info vertical-align">
+      <div class="image">
+        <img src="{{player.current_track.album.images[2].url}}"/>
+      </div>
+      <div class="artist-text vertical-align">
+        <div class="track">
+          {{player.current_track.name}}
+        </div>
+        <div class="artist">
+          <ng-container *ngFor="let artist of player.current_track.artists; let last = last">
+            <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
+            <ng-container *ngIf="!last">,</ng-container>
+          </ng-container>
+        </div>
+        <div class="album">
+          {{player.current_track.album.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="playback-controls vertical-align">
+      <app-playback-controls></app-playback-controls>
+      <app-position-slider></app-position-slider>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="volume-controls vertical-align">Volume stuff</div>
+  </div>
+</div>

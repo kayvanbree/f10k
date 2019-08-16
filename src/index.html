@@ -2,13 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>F10k</title>
+  <title>f10k</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    window.waitForSpotify = new Promise((resolve, reject) => {
+      window.onSpotifyWebPlaybackSDKReady = () => {
+        resolve();
+      }
+    });
+  </script>
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
 </html>

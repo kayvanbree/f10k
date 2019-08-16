@@ -1,0 +1,25 @@
+<h1>Tracks ({{trackTotal}})</h1>
+<app-track-list
+  class="item-list"
+  *ngIf="trackIds"
+  [ids]="trackIds"
+  [pageSize]="10"
+  [total]="trackTotal"
+  (pageChange)="onPageChange($event, 'track')"
+  [loading]="searching"
+></app-track-list>
+
+<h1>Artists ({{artistTotal}})</h1>
+<app-artist-list
+  class="item-list"
+  *ngIf="artistIds"
+  [ids]="artistIds"
+  [pageSize]="10"
+  [total]="artistTotal"
+  (pageChange)="onPageChange($event, 'artist')"
+  [loading]="searching"
+></app-artist-list>
+
+<h1>Albums (0)</h1>
+
+<h1>Playlists (0)</h1>

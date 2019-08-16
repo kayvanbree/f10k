@@ -1,0 +1,14 @@
+<mat-list class="menu">
+  <mat-list-item *ngFor="let item of menuItems" class="menu-item">
+    <button
+      mat-mini-fab
+      color="secondary"
+      class="nav-button"
+      [routerLink]="item.routerLink"
+      [matTooltip]="item.tooltip"
+      [matTooltipPosition]="'right'"
+    >
+      <mat-icon>{{item.icon}}</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>

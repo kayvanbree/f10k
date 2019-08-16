@@ -1,0 +1,17 @@
+<button class="side-button" mat-mini-fab>
+  <mat-icon>skip_previous</mat-icon>
+</button>
+<ng-container *ngIf="player?.paused; else playButton">
+  <button class="center-button" mat-mini-fab (click)="togglePlay()">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+</ng-container>
+<button class="side-button" mat-mini-fab>
+  <mat-icon>skip_next</mat-icon>
+</button>
+
+<ng-template #playButton>
+  <button class="center-button" mat-mini-fab (click)="togglePlay()">
+    <mat-icon>pause</mat-icon>
+  </button>
+</ng-template>

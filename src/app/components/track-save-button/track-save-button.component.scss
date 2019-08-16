@@ -1,0 +1,32 @@
+$button-size: 30px;
+$icon-size: 24px;
+
+button {
+  padding: 0;
+  width: $button-size;
+  height: $button-size;
+  line-height: $icon-size;
+  font-size: $icon-size;
+  min-width: $button-size;
+  color: #1db954;
+
+  &::ng-deep .mat-button-wrapper{
+    line-height: $icon-size;
+    padding: 0;
+
+    .mat-icon {
+      font-size: $icon-size;
+      padding-right: 0px;
+      padding-top: 0px;
+    }
+  }
+
+  &.not-saved:not(:hover),
+  &.saved:hover {
+    color: rgba(255, 255, 255, 0.11);
+  }
+
+  &:hover ::ng-deep .mat-button-focus-overlay {
+    background: transparent;
+  }
+}

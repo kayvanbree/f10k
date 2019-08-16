@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background: grey;
+  flex-direction: column;
+}
+
+.header {
+  background: #141414;
+  display: flex;
+  padding: 6px 10px;
+  height: 36px;
+
+  .flex-stuff {
+    flex: 1;
+  }
+
+  a {
+    color: rgb(29, 185, 84);
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: block;
+    padding: 3px 7px;
+    float: left;
+  }
+
+  span {
+    float: left;
+  }
+
+  .search {
+    display: block;
+
+    ::ng-deep .mat-form-field-infix {
+      margin-top: 0;
+      border-top: 0;
+    }
+
+    color: #fff;
+  }
+}
+
+.footer {
+  background: #141414;
+}
+
+.body {
+  display: flex;
+  flex: 1 0 0;
+  min-height: 0;
+}
+
+.column {
+  height: 100%;
+  overflow: auto;
+  flex: 1;
+}
+
+.sidebar {
+  background: #515151;
+  flex: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.navigation {
+  flex: 1;
+}
+
+.player {
+  flex: 0 0 100px;
+  background: #141414;
+}
+

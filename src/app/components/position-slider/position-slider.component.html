@@ -1,0 +1,17 @@
+<div class="slider-container">
+  <div class="column side">
+    {{player.position | minutesSeconds}}
+  </div>
+  <div class="column">
+    <mat-slider
+      class="slider"
+      min="0"
+      [max]="player.duration"
+      [value]="player.position"
+      tickInterval="1000"
+    ></mat-slider>
+  </div>
+  <div class="column side">
+    {{player.duration | minutesSeconds}}
+  </div>
+</div>

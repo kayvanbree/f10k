@@ -1,0 +1,31 @@
+:host {
+  button {
+    color: #1db954;
+    background: transparent;
+    box-shadow: none;
+    margin: 5px;
+    border: 1px rgba(255, 255, 255, 0.05) solid;
+
+    &:hover {
+      border: 1px #1db954 solid;
+    }
+
+    &.side-button {
+      width: 30px;
+      height: 30px;
+      line-height: 22px;
+      font-size: 22px;
+
+      &::ng-deep .mat-button-wrapper{
+        line-height: 22px;
+        padding: 0;
+
+        .mat-icon {
+          font-size: 22px;
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+      }
+    }
+  }
+}

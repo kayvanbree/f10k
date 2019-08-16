@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+}
+
+.card {
+  float: left;
+  margin: 20px;
+  padding: 50px;
+  width: 50%;
+
+  ::ng-deep .mat-card-header-text {
+    margin: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
+.actions {
+  float: right;
+}

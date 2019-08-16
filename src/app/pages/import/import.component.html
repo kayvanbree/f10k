@@ -1,0 +1,36 @@
+<div class="content">
+  <mat-card class="card mat-elevation-z8">
+    <mat-card-header>
+      <h1>Import songs</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <span>
+        Save the songs you saved on Spotify here on f10k.
+        This is way quicker than importing your playlists,
+        but you'll have to add songs manually to f10k if
+        you hit the 10k limit before coming here.
+      </span>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary" (click)="startImport()">Import tracks</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="card card mat-elevation-z8">
+    <mat-card-header>
+      <h1>Import playlists</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <span>
+        Traverse your playlists from Spotify and save all songs to f10k.
+        This may take a while, as we have to wait in between playlists to prevent
+        making too many requests to the Spotify Web API.
+      </span>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary" (click)="startImportFromPlaylists()">Import playllists</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+

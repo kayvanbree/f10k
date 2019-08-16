@@ -1,0 +1,7 @@
+<app-track-list
+  class="item-list"
+  [ids]="ids"
+  [pageSize]="50"
+  [total]="ids.length"
+  (pageChange)=onPageChange($event)
+></app-track-list>

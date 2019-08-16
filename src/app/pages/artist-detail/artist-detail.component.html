@@ -1,0 +1,8 @@
+<ng-container *ngIf="artist">
+  <img src="{{artist.images[0].url}}" />
+  <h1>{{artist.name}}</h1>
+
+  <app-artist-save-button [id]="artist.id"></app-artist-save-button>
+
+  <div>Genres: <ng-container *ngFor="let genre of artist.genres">{{genre}}, </ng-container></div>
+</ng-container>

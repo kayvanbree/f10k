@@ -1,0 +1,32 @@
+<div class="list-container" *ngIf="artists">
+  <table mat-table [dataSource]="artists" class="table" *ngIf="!loading">
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"><img *ngIf="element.images[2]" src="{{element.images[2].url}}"/></td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="popularity">
+      <th mat-header-cell *matHeaderCellDef> Popularity</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-progress-bar class="progress-bar" [value]="element.popularity"></mat-progress-bar>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="saved">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <app-artist-save-button [id]="element.id"></app-artist-save-button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openArtist(row.id)"></tr>
+  </table>
+</div>
+<mat-paginator [pageSize]="pageSize" [length]="total" (page)="openPage($event)" showFirstLastButtons></mat-paginator>
+

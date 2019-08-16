@@ -1,0 +1,11 @@
+<form class="search-form">
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      (keydown.enter)="search()"
+      name="search-query"
+    />
+  </mat-form-field>
+  <button mat-raised-button routerLink="/search" [queryParams]="{query: searchQuery}">Search</button>
+</form>
