@@ -7,8 +7,8 @@
       class="slider"
       min="0"
       [max]="player.duration"
-      [ngModel]="player.position"
-      (ngModelChange)="seekPosition($event)"
+      [value]="player.position"
+      (change)="seekPosition($event)"
       (input)="onInput($event)"
     ></mat-slider>
   </div>

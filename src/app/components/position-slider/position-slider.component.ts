@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PlayerStateModel} from '../../store/models/player-state.model';
 import {Store} from '@ngxs/store';
 import {Seek} from '../../store/actions/player.actions';
+import {MatSliderChange} from '@angular/material';
 
 @Component({
   selector: 'app-position-slider',
@@ -22,9 +23,11 @@ export class PositionSliderComponent implements OnInit {
     });
   }
 
-  seekPosition(position: number) {
-    this.store.dispatch(new Seek(position));
-    this.sliding = false;
+  seekPosition(event: MatSliderChange) {
+    if (this.sliding) {
+      this.store.dispatch(new Seek(event.value));
+      this.sliding = false;
+    }
   }
 
   onInput(event: any) {
