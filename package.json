@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-pages": "gh-pages -d dist/f10k"
+    "gh-pages": "gh-pages -d dist/f10k",
+    "build-and-publish": "npm run build && npm run gh-pages"
   },
   "private": true,
   "dependencies": {
