@@ -41,6 +41,7 @@ import {SearchComponent} from './components/search/search.component';
 import { PositionSliderComponent } from './components/position-slider/position-slider.component';
 import { PlaybackControlsComponent } from './components/playback-controls/playback-controls.component';
 import {MinutesSecondsPipe} from './pipes/minutes-seconds.pipe';
+import { VolumeControlComponent } from './components/volume-control/volume-control.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -55,7 +56,8 @@ const spotifyConfig = {
     'playlist-modify-public',
     'playlist-read-private',
     'user-modify-playback-state',
-    'streaming'
+    'streaming',
+    ' user-read-playback-state'
   ],
   authToken: localStorage.getItem('angular2-spotify-token'),
   apiBase: environment.apiBase,
@@ -84,6 +86,7 @@ const spotifyConfig = {
     PositionSliderComponent,
     PlaybackControlsComponent,
     MinutesSecondsPipe,
+    VolumeControlComponent,
   ],
   imports: [
     BrowserModule,
