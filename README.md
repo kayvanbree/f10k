@@ -24,17 +24,14 @@ can be used to save tracks, artists and albums by saving the corresponding ids t
 - Play an album
 - Export saved tracks to Spotify
 
-## Contributing
+## Running f10k
 
-First you will need to add a new app to your [Spotify dashboard](https://developer.spotify.com/dashboard/login).
-
-Copy `./src/.environment-example.ts` and paste it as `environment.ts` in the same folder. 
-
-Change the client-id in `environment.ts` to your own client-id found at your dashboard.
-
-Up until now, there is no backend yet, so just run the regular commands for Angular:
-
-``` 
-npm install
-npm run start
-``` 
+1. First you will need to add a new app to your 
+[Spotify dashboard](https://developer.spotify.com/dashboard/login).
+1. Copy `./src/.environment-example.ts` and paste it as `environment.ts` in the same folder. 
+1. Change the client-id in `environment.ts` to your own client-id found at 
+[Spotify dashboard](https://developer.spotify.com/dashboard/login).
+1. Add the redirect uri from your environment file to your app on your 
+[Spotify dashboard](https://developer.spotify.com/dashboard/login).
+1. Up until now, there is no backend yet, so just run the regular commands for Angular: 
+`npm install` and `npm run start` 
