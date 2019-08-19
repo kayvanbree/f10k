@@ -1,27 +1,36 @@
-# F10k
+# f10k
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+f10k should become the answer to the 10k saving limit of Spotify. This web-based player
+can be used to save tracks, artists and albums by saving the corresponding ids to its own storage.
 
-## Development server
+## Current features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Save tracks and artists
+- View saved tracks and artists
+- Track/artist lists pagination (also in search)
+- Import saved tracks from your Spotify account
+- Play tracks
+- Next + previous song
+- Current track information (track position, album, artist)
+- Search tracks and artists
 
-## Code scaffolding
+## Planned features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Control other devices
+- Play a list of all your saved tracks
+- Play your saved tracks on shuffle
+- Volume control
+- Replacing pagination by virtual scrolling
+- Play an album
+- Export saved tracks to Spotify
 
-## Build
+## Running f10k
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Up until now, there is no backend yet, so just run the regular commands for Angular: 
+`npm install` and `npm run start`.
 
-## Running unit tests
+### Insanity prevention
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To prevent yourself from going completely insane, open up Spotify on your development machine
+and switch to that player. This will prevent from the music starting over again every time 
+you make changes and the page reloads.

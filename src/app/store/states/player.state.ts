@@ -1,7 +1,15 @@
 import {Action, State, StateContext} from '@ngxs/store';
 import {PlayerStateModel} from '../models/player-state.model';
 import {PlayerSpotifyService} from '../providers/player-spotify.service';
-import {NextTrack, PlayTrack, PreviousTrack, RegisterPlayer, TogglePlay, UpdatePlayerStatus} from '../actions/player.actions';
+import {
+  NextTrack,
+  PlayTrack,
+  PreviousTrack,
+  RegisterPlayer,
+  SetVolume, Seek,
+  TogglePlay, UpdateDeviceStatus,
+  UpdatePlayerStatus,
+} from '../actions/player.actions';
 
 @State<PlayerStateModel>({
   name: 'player',
@@ -14,10 +22,13 @@ import {NextTrack, PlayTrack, PreviousTrack, RegisterPlayer, TogglePlay, UpdateP
     paused: true,
     track_list: [],
     current_track_id: null,
+    volume: 50,
+    device: null,
   }
 })
 export class PlayerState {
-  constructor(private playerService: PlayerSpotifyService) {}
+  constructor(private playerService: PlayerSpotifyService) {
+  }
 
   @Action(PlayTrack)
   public playTrack(ctx: StateContext<PlayerStateModel>, action: PlayTrack) {
@@ -27,7 +38,7 @@ export class PlayerState {
       track_list: action.ids,
       current_track_id: action.id,
     });
-    this.playerService.playTrack(action.ids, action.id, state.device_id, !!state.initialized).subscribe();
+    this.playerService.playTrack(action.ids, action.id, state.device.id, !!state.initialized).subscribe();
   }
 
   @Action(TogglePlay)
@@ -52,17 +63,41 @@ export class PlayerState {
     const state = ctx.getState();
     ctx.setState({
       ...state,
-      device_id: action.deviceId,
+      device: {
+        ...state.device,
+        id: action.deviceId,
+      }
     });
   }
 
   @Action(NextTrack)
   public nextTrack(ctx: StateContext<PlayerStateModel>, action: NextTrack) {
-    this.playerService.next().subscribe();
+    const state = ctx.getState();
+    this.playerService.next(state.device.id).subscribe();
   }
 
   @Action(PreviousTrack)
   public previousTrack(ctx: StateContext<PlayerStateModel>, action: PreviousTrack) {
-    this.playerService.previous().subscribe();
+    const state = ctx.getState();
+    this.playerService.previous(state.device.id).subscribe();
+  }
+
+  @Action(SetVolume)
+  public setVolume(ctx: StateContext<PlayerStateModel>, action: SetVolume) {
+    const state = ctx.getState();
+    this.playerService.setVolume(state.device.id, action.volume).subscribe();
+  }
+
+  @Action(UpdateDeviceStatus)
+  public updateDeviceStatus(ctx: StateContext<PlayerStateModel>, action: UpdateDeviceStatus) {
+    ctx.patchState({
+      device: action.device,
+    });
+  }
+
+  @Action(Seek)
+  public skipToPosition(ctx: StateContext<PlayerStateModel>, action: Seek) {
+    const state = ctx.getState();
+    this.playerService.seek(state.device.id, action.position).subscribe();
   }
 }

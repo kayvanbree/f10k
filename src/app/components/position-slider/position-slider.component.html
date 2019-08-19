@@ -8,6 +8,8 @@
       min="0"
       [max]="player.duration"
       [value]="player.position"
+      (change)="seekPosition($event)"
+      (input)="onInput($event)"
     ></mat-slider>
   </div>
   <div class="column side">

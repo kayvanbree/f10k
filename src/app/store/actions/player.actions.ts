@@ -32,3 +32,23 @@ export class NextTrack {
 export class PreviousTrack {
   static readonly type = '[Player] PreviousTrack';
 }
+
+export class UpdateVolume {
+  static readonly type = '[Player] UpdateVolume';
+  constructor(public volume: number) {}
+}
+
+export class SetVolume {
+  static readonly type = '[Player] SetVolume';
+  constructor(public volume: number) {}
+}
+
+export class UpdateDeviceStatus {
+  static readonly type = '[Player] UpdateDeviceStatus';
+  constructor(public device: any) {}
+}
+
+export class Seek {
+  static readonly type = '[Player] Seek';
+  constructor(public position: number) {}
+}
