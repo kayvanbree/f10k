@@ -1,0 +1,38 @@
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$f10k-primary: mat-palette($mat-green);
+$f10k-accent: mat-palette($mat-amber, A200, A100, A400);
+$f10k-warn: mat-palette($mat-red);
+$f10k-dark: mat-dark-theme($f10k-primary, $f10k-accent, $f10k-warn);
+
+@mixin nav-button-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .nav-button {
+    color: mat-color($primary) !important;
+  }
+}
+
+@mixin playback-controls-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .playback-button {
+    color: mat-color($primary) !important;
+
+    &:hover {
+      border-color: mat-color($primary) !important;
+    }
+  }
+}
+
+@include angular-material-theme($f10k-dark);
+@include nav-button-theme($f10k-dark);
+@include playback-controls-theme($f10k-dark);
+
+
