@@ -14,8 +14,7 @@ jobs:
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: run build --prod
-    - name: Deploy to GitHub Pages
-      uses: maxheld83/ghpages@v0.2.1
-      env:
-        BUILD_DIR : dist/f10k
-        GH_PAT: ${{ secrets.GH_PAT }}
+    - name: Publish gh-pages
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: run gh-pages

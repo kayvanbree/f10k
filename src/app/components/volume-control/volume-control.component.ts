@@ -8,7 +8,7 @@ import {SetVolume} from '../../store/actions/player.actions';
   styleUrls: ['./volume-control.component.scss']
 })
 export class VolumeControlComponent implements OnInit {
-  private volume: number;
+  public volume: number;
 
   constructor(private store: Store) { }
 
@@ -18,7 +18,7 @@ export class VolumeControlComponent implements OnInit {
     });
   }
 
-  onNgModelChange(volume: number) {
+  public onNgModelChange(volume: number): void {
     this.store.dispatch(new SetVolume(volume));
   }
 }
