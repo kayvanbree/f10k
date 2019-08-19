@@ -63,6 +63,8 @@ export class TrackListComponent implements OnInit, OnChanges {
     const start = this.pageSize * this.currentPage;
     const end = start + this.pageSize;
     const pageItems = this.ids.slice(start, end);
-    this.store.dispatch(new GetTracks(pageItems, this.pageSize));
+    if (pageItems.length > 0) {
+      this.store.dispatch(new GetTracks(pageItems, this.pageSize));
+    }
   }
 }

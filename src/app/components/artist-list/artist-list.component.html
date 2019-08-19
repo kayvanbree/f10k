@@ -1,4 +1,4 @@
-<div class="list-container" *ngIf="artists">
+<div class="list-container disable-select" *ngIf="artists">
   <table mat-table [dataSource]="artists" class="table" *ngIf="!loading">
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef></th>
