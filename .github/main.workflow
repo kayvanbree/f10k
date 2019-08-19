@@ -8,16 +8,10 @@ action "Install" {
   args = "install"
 }
 
-action "Test" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["Install"]
-  args = "run test"
-}
-
 action "Build" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["Test"]
   args = "run build --prod"
+  needs = ["Install"]
 }
 
 action "Deploy to GitHub Pages" {
