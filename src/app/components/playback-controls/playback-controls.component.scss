@@ -5,9 +5,14 @@
     box-shadow: none;
     margin: 5px;
     border: 1px rgba(255, 255, 255, 0.05) solid;
+    box-sizing: content-box;
 
     &:hover {
       border: 1px #1db954 solid;
+    }
+
+    ::ng-deep .mat-button-wrapper {
+      margin-top: -1px;
     }
 
     &.side-button {
