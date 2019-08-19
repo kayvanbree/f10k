@@ -15,8 +15,8 @@ jobs:
       with:
         args: run build --prod
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@master
+      uses: peaceiris/actions-gh-pages@v1.1.0
       env:
-        FOLDER: dist/f10k
-        BRANCH: gh-pages
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        PUBLISH_DIR : dist/f10k
+        PUBLISH_BRANCH : gh-pages
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
