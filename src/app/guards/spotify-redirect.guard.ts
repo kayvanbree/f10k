@@ -10,6 +10,10 @@ export class SpotifyRedirectGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (!route.fragment) {
+      return true;
+    }
+
     let accessToken;
     let tokenType;
     let expiresIn;
@@ -31,7 +35,6 @@ export class SpotifyRedirectGuard implements CanActivate {
     localStorage.setItem('ngx-spotify-token-type', tokenType);
     localStorage.setItem('ngx-spotify-token-expires', expiresIn);
 
-    this.router.navigate(['']);
     return true;
   }
 }
