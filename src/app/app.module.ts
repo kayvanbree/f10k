@@ -41,11 +41,10 @@ import {SearchComponent} from './components/search/search.component';
 import { PositionSliderComponent } from './components/position-slider/position-slider.component';
 import { PlaybackControlsComponent } from './components/playback-controls/playback-controls.component';
 import {MinutesSecondsPipe} from './pipes/minutes-seconds.pipe';
-import {NgxsRouterPluginModule} from '@ngxs/router-plugin';
 
 const spotifyConfig = {
-  clientId: 'b9127ac032144291b811953663406a0b',
-  redirectUri: 'http://localhost:4200/spotify-redirect',
+  clientId: environment.clientId,
+  redirectUri: environment.redirectUri,
   scope: [
     'user-read-private',
     'user-read-email',
