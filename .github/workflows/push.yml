@@ -15,8 +15,7 @@ jobs:
       with:
         args: run build --prod
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v1.1.0
+      uses: maxheld83/ghpages@v0.2.1
       env:
-        PUBLISH_DIR : dist/f10k
-        PUBLISH_BRANCH : gh-pages
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BUILD_DIR : dist/f10k
+        GH_PAT: ${{ secrets.GH_PAT }}
