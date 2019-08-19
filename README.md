@@ -35,3 +35,9 @@ can be used to save tracks, artists and albums by saving the corresponding ids t
 [Spotify dashboard](https://developer.spotify.com/dashboard/login).
 1. Up until now, there is no backend yet, so just run the regular commands for Angular: 
 `npm install` and `npm run start` 
+
+### Insanity prevention
+
+To prevent yourself from going completely insane, open up Spotify on your development machine
+and switch to that player. This will prevent from the music starting over again every time 
+you make changes and the page reloads.
