@@ -47,3 +47,8 @@ export class UpdateDeviceStatus {
   static readonly type = '[Player] UpdateDeviceStatus';
   constructor(public device: any) {}
 }
+
+export class Seek {
+  static readonly type = '[Player] Seek';
+  constructor(public position: number) {}
+}

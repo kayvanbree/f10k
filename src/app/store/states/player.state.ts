@@ -6,7 +6,7 @@ import {
   PlayTrack,
   PreviousTrack,
   RegisterPlayer,
-  SetVolume,
+  SetVolume, Seek,
   TogglePlay, UpdateDeviceStatus,
   UpdatePlayerStatus,
 } from '../actions/player.actions';
@@ -93,5 +93,11 @@ export class PlayerState {
     ctx.patchState({
       device: action.device,
     });
+  }
+
+  @Action(Seek)
+  public skipToPosition(ctx: StateContext<PlayerStateModel>, action: Seek) {
+    const state = ctx.getState();
+    this.playerService.seek(state.device.id, action.position).subscribe();
   }
 }

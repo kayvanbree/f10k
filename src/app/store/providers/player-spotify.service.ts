@@ -160,6 +160,10 @@ export class PlayerSpotifyService {
     return this.http.put(` ${this.config.apiBase}/me/player/volume?device_id=${device}&volume_percent=${volume}`, {});
   }
 
+  seek(device: string, position: number) {
+    return this.http.put(` ${this.config.apiBase}/me/player/seek?device_id=${device}&position_ms=${position}`, {});
+  }
+
   disconnect() {
     this.player.disconnect();
   }
