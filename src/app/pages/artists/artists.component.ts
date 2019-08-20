@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {ArtistModel} from '../../store/models/artist.model';
 import {GetArtists} from '../../store/actions/artist.actions';
-import {GetTracks} from '../../store/actions/track.actions';
 
 @Component({
   selector: 'app-artists',

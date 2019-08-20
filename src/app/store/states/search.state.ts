@@ -20,7 +20,7 @@ export class SearchState {
       ...state,
       query: action.query,
     });
-    this.searchService.search(action.query, action.pageSize, action.offset, action.type).subscribe((value: any) => {
+    this.searchService.search(action.query, action.pageSize, action.offset * action.pageSize, action.type).subscribe((value: any) => {
       ctx.dispatch(new SearchSuccess(value));
     });
   }
