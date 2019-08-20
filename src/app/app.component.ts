@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {SpotifyAuthenticationService} from './providers/spotify-authentication.service';
+import {Component} from '@angular/core';
+import {Select, Store} from '@ngxs/store';
+import {AuthenticationState} from './store/states/authentication.state';
+import {Logout} from './store/actions/authentication.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'f10k';
-  public loggedIn: boolean;
 
-  constructor(
-    private spotifyAuthentication: SpotifyAuthenticationService,
-  ) {}
+  @Select(AuthenticationState.isLoggedIn) public loggedIn: boolean;
 
-  public ngOnInit(): void {
-    this.loggedIn = this.spotifyAuthentication.isLoggedIn();
+  constructor(private store: Store) {}
+
+  logout() {
+    this.store.dispatch(new Logout());
   }
 }
