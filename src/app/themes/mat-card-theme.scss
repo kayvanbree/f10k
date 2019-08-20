@@ -1,0 +1,15 @@
+@mixin mat-card-theme($theme) {
+  .mat-card {
+    margin: 20px;
+    padding: 30px !important;
+  }
+
+  .mat-card-header-text {
+    margin: 0 !important;
+  }
+
+  h1 {
+    margin-top: 0 !important;
+  }
+}
+@include mat-card-theme($f10k-dark);

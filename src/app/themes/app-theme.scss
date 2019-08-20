@@ -1,0 +1,43 @@
+@mixin app-theme($theme) {
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+
+  .header {
+    background: mat-color($background, app-bar);
+
+    .app-title a {
+      color: mat-color($primary);
+    }
+  }
+
+  .content {
+    background: mat-color($background, background);
+  }
+
+  .sidebar {
+    background-color: mat-color($background, card);
+  }
+
+  .footer {
+    background: mat-color($background, app-bar);
+  }
+}
+
+@include app-theme($f10k-dark);
+
+@mixin player-track-info-typography($config) {
+  .f10k-dark {
+    font: {
+      family: mat-font-family($config, body-1);
+      size: mat-font-size($config, body-1);
+      weight: mat-font-weight($config, body-1);
+    }
+
+    .header a {
+      text-decoration: none;
+      font-size: 2em;
+      font-weight: bold;
+    }
+  }
+}
+@include player-track-info-typography($config);

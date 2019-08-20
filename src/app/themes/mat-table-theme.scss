@@ -1,0 +1,12 @@
+@mixin mat-table-theme($theme) {
+  $background: map-get($theme, background);
+
+  .mat-table {
+    background: mat-color($background, background) !important;
+  }
+
+  .mat-paginator-outer-container {
+    background: mat-color($background, background) !important;
+  }
+}
+@include mat-table-theme($f10k-dark);

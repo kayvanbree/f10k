@@ -17,19 +17,8 @@ $config: mat-typography-config();
 @import "./player-track-info-theme";
 @import "./position-slider-theme";
 @import "./artist-detail-theme";
+@import "./app-theme";
+@import "./link-theme";
 
-@mixin mat-card-theme($theme) {
-  .mat-card {
-    margin: 20px;
-    padding: 30px !important;
-  }
-
-  .mat-card-header-text {
-    margin: 0 !important;
-  }
-
-  h1 {
-    margin-top: 0 !important;
-  }
-}
-@include mat-card-theme($f10k-dark);
+@import "./mat-table-theme";
+@import "./mat-card-theme";

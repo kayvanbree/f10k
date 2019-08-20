@@ -15,15 +15,3 @@
   }
 }
 @include player-track-info-theme($f10k-dark);
-
-
-@mixin player-track-info-typography($config) {
-  .artist-text {
-    font: {
-      family: mat-font-family($config, body-1);
-      size: mat-font-size($config, body-1);
-      weight: mat-font-weight($config, body-1);
-    }
-  }
-}
-@include player-track-info-typography($config);
