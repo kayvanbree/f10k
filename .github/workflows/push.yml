@@ -10,10 +10,18 @@ jobs:
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: install
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
     - name: Build
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: run build --prod
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
     - name: Publish gh-pages
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
