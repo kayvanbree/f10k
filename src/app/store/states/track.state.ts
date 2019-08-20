@@ -3,63 +3,65 @@ import {TrackStateModel} from '../models/track-state.model';
 import {TrackSpotifyService} from '../providers/track-spotify.service';
 import {append, patch, removeItem} from '@ngxs/store/operators';
 import {
+  EntityState,
+  EntityStateModel,
+  defaultEntityState,
+  IdStrategy,
+} from '@ngxs-labs/entity-state';
+
+import {
   GetTracks,
-  GetTracksSuccess,
   ImportTracks,
   ImportPlaylists, ImportPlaylistsSuccess,
   ImportTracksSuccess,
   RemoveTrack,
   SaveTrack, ImportTracksFromPlaylist, ImportTracksFromPlaylistSuccess
 } from '../actions/track.actions';
+import {TrackModel} from '../models/track.model';
 
-@State<TrackStateModel>({
-  name: 'tracks',
-  defaults: {
-    ids: [
-      '7lT3Y2QlPs792zEfOj4b0K'
-    ],
-    tracks: [],
+export class NoIdGenerator<T> extends IdStrategy.IdGenerator<T> {
+  constructor(idKey: keyof T) {
+    super(idKey);
   }
+
+  generateId(entity: Partial<T>, state: EntityStateModel<any>): string {
+    return '';
+  }
+}
+
+@State<EntityStateModel<TrackModel>>({
+  name: 'tracks',
+  defaults: defaultEntityState({
+    pageSize: 50,
+    pageIndex: 0,
+  })
 })
-export class TrackState {
+export class TrackState extends EntityState<TrackModel> {
   static isSaved(id: string) {
     return createSelector([TrackState], (state: TrackStateModel) => {
-      return state.ids.filter(s => s === id).length > 0;
+      return state.saved.filter(s => s === id).length > 0;
     });
   }
 
-  constructor(private trackService: TrackSpotifyService) {}
+  constructor(private trackService: TrackSpotifyService) {
+    super(TrackState, 'id' , NoIdGenerator);
+  }
 
   @Action(GetTracks)
-  public getTracks(ctx: StateContext<TrackStateModel>, action: GetTracks) {
+  public getTracks(ctx: StateContext<EntityStateModel<TrackModel>>, action: GetTracks) {
     this.trackService.getTracks(action.ids, action.pageSize).subscribe((value: any) => {
-      ctx.dispatch(new GetTracksSuccess(value.tracks));
+      this.update(ctx, { payload: value.tracks });
     });
-  }
-
-  @Action(GetTracksSuccess)
-  public getTracksSuccess(ctx: StateContext<TrackStateModel>, action: GetTracksSuccess) {
-    ctx.setState(
-      patch({
-        tracks: action.tracks,
-      })
-    );
   }
 
   @Action(SaveTrack)
-  public saveTrack(ctx: StateContext<TrackStateModel>, action: SaveTrack) {
-    ctx.setState(
-      patch({
-        ids: append<string>([action.id]),
-      })
-    );
-  }
+  public saveTrack(ctx: StateContext<TrackStateModel>, action: SaveTrack) {}
 
   @Action(RemoveTrack)
   public removeTrack(ctx: StateContext<TrackStateModel>, action: RemoveTrack) {
     ctx.setState(
       patch({
-        ids: removeItem<string>(name => name === action.id),
+        saved: removeItem<string>(name => name === action.id),
       }),
     );
   }
@@ -77,7 +79,7 @@ export class TrackState {
     const ids = action.importObject.items.map(x => x.track.id);
     ctx.setState(
       patch({
-        ids: append<string>(ids),
+        saved: append<string>(ids),
       }),
     );
     if (action.importObject.next) {

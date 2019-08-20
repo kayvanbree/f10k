@@ -38,7 +38,7 @@ export class TrackListComponent implements OnInit, OnChanges {
 
   public ngOnInit(): void {
     this.updateItems();
-    this.store.select(state => state.tracks.tracks).subscribe((value) => {
+    this.store.select(state => state.tracks.saved).subscribe((value) => {
       this.tracks = value;
       this.loading = false;
     });

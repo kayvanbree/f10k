@@ -1,6 +1,7 @@
 import {TrackModel} from './track.model';
 
-export interface TrackStateModel {
+export class TrackStateModel {
   ids: string[];
   tracks: TrackModel[];
+  saved: string[];
 }
