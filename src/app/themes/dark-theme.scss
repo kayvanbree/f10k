@@ -16,6 +16,7 @@ $config: mat-typography-config();
 @import "./nav-button-theme";
 @import "./player-track-info-theme";
 @import "./position-slider-theme";
+@import "./artist-detail-theme";
 
 @mixin mat-card-theme($theme) {
   .mat-card {
