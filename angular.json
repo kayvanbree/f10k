@@ -29,7 +29,6 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/app/themes/angular-mixins.scss",
               "src/app/themes/dark-theme.scss"
             ],
             "scripts": []
