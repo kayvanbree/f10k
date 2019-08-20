@@ -72,6 +72,12 @@ const serialize = (value: any) => {
     tracks: {
       ...value.tracks,
       tracks: [],
+    },
+    artists: {
+      ...value.artists,
+      artists: [],
+      currentArtist: null,
+      currentArtistId: null
     }
   };
   return JSON.stringify(newValue);
