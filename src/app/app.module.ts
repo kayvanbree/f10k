@@ -66,7 +66,7 @@ const spotifyConfig = {
   authorizationUrl: environment.authorizationUrl,
 };
 
-const serialize = (value: any) => {
+export function serialize(value: any) {
   const newValue = {
     ...value,
     tracks: {
@@ -81,7 +81,7 @@ const serialize = (value: any) => {
     }
   };
   return JSON.stringify(newValue);
-};
+}
 
 @NgModule({
   declarations: [

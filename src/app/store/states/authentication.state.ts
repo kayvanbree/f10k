@@ -2,6 +2,7 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {SpotifyAuthenticationService} from '../providers/spotify-authentication.service';
 import {Login, Logout, UpdateAuthenticationTokens} from '../actions/authentication.actions';
 import {AuthenticationStateModel} from '../models/authentication-state.model';
+import {Observable} from 'rxjs';
 
 @State<AuthenticationStateModel>({
   name: 'authentication',
@@ -14,14 +15,14 @@ import {AuthenticationStateModel} from '../models/authentication-state.model';
 })
 export class AuthenticationState {
   @Selector()
-  static isLoggedIn(state: AuthenticationStateModel) {
+  static isLoggedIn(state: AuthenticationStateModel): boolean {
     const now = Date.now();
     const expiresAt = state.ngxs_spotify_token_expires_at;
     return state.ngxs_spotify_token && now < expiresAt;
   }
 
   @Selector()
-  static token(state: AuthenticationStateModel) {
+  static token(state: AuthenticationStateModel): string {
     return state.ngxs_spotify_token;
   }
 
