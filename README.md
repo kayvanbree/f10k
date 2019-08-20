@@ -1,27 +1,43 @@
-# F10k
+# f10k
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+f10k should become the answer to the 10k saving limit of Spotify. This web-based player
+can be used to save tracks, artists and albums by saving the corresponding ids to its own storage.
 
-## Development server
+## Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You can find a demo at https://kayvanbree.github.io/f10k/tracks.
 
-## Code scaffolding
+WARNING: as I did not release a real version yet, the demo will be subject to change. 
+You can LOSE your saved songs as long as we don't have a backend yet.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Current features
 
-## Build
+- Save tracks and artists
+- View saved tracks and artists
+- Track/artist lists pagination (also in search)
+- Import saved tracks from your Spotify account
+- Play tracks
+- Next + previous song
+- Current track information (track position, album, artist)
+- Search tracks and artists
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Planned features
 
-## Running unit tests
+- Control other devices
+- Play a list of all your saved tracks
+- Play your saved tracks on shuffle
+- Volume control
+- Replacing pagination by virtual scrolling
+- Play an album
+- Export saved tracks to Spotify
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running f10k
 
-## Running end-to-end tests
+Up until now, there is no backend yet, so just run the regular commands for Angular: 
+`npm install` and `npm run start`.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Insanity prevention
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To prevent yourself from going completely insane, open up Spotify on your development machine
+and switch to that player. This will prevent from the music starting over again every time 
+you make changes and the page reloads.

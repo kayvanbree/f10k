@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiBase: 'https://api.spotify.com/v1',
   authorizationUrl: 'https://accounts.spotify.com/authorize',
+  clientId: 'eb2f6d23379f4c99b7feb89b86526b78',
+  redirectUri: 'http://localhost:4200'
 };
 
 /*

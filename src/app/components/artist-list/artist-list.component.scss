@@ -5,11 +5,8 @@
 }
 
 .list-container {
-  color: #f1f1f1;
   flex: 1;
   overflow: auto;
-  background: #424242;
-
   border-bottom: 1px rgba(255,255,255,.12) solid;
   box-sizing: content-box;
 }
@@ -30,10 +27,6 @@
 
       .progress-bar {
         width: 100%;
-
-        ::ng-deep .mat-progress-bar-background {
-          fill: grey;
-        }
       }
     }
     &.mat-column-saved {
@@ -45,14 +38,5 @@
     height: 32px;
     width: auto;
     display: block;
-  }
-
-  a {
-    color: white;
-    text-decoration: none;
-
-    &:hover {
-      color: #c3c3c3;
-    }
   }
 }

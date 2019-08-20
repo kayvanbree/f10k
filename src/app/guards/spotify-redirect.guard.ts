@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {UpdateAuthenticationTokens} from '../store/actions/authentication.actions';
+import {Store} from '@ngxs/store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyRedirectGuard implements CanActivate {
-  constructor(
-    private router: Router,
-  ) {}
+  constructor(private store: Store) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (!route.fragment) {
+      return true;
+    }
+
     let accessToken;
     let tokenType;
     let expiresIn;
@@ -27,11 +31,8 @@ export class SpotifyRedirectGuard implements CanActivate {
       }
     }
 
-    localStorage.setItem('ngx-spotify-token', accessToken);
-    localStorage.setItem('ngx-spotify-token-type', tokenType);
-    localStorage.setItem('ngx-spotify-token-expires', expiresIn);
+    this.store.dispatch(new UpdateAuthenticationTokens(accessToken, tokenType, expiresIn));
 
-    this.router.navigate(['']);
     return true;
   }
 }

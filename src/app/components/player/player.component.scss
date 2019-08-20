@@ -27,31 +27,13 @@
   transform: translateY(-50%);
 }
 
-.info {
-  color: white;
-  display: flex;
-  flex-direction: row;
 
-  .image {
-    padding: 10px;
-    height: 64px;
-    width: 64px;
 
-    img {
-      height: 64px;
-      width: 64px;
-    }
-  }
-
-  .artist-text {
-    height: 35px;
-  }
+.playback-controls,
+.volume-controls {
+  text-align: center;
 }
 
-.playback-controls {
-  text-align: center;
-
-  .position{
-    width: 100%;
-  }
+.info {
+  flex-direction: row;
 }

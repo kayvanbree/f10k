@@ -1,4 +1,5 @@
 import {TrackModel} from './track.model';
+import {DeviceModel} from './device-model';
 
 export interface PlayerStateModel {
   current_track: TrackModel;
@@ -9,4 +10,6 @@ export interface PlayerStateModel {
   paused: boolean;
   track_list: string[];
   current_track_id: string;
+  volume: number;
+  device: DeviceModel;
 }
