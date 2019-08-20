@@ -1,18 +1,18 @@
 <div class="container f10k-dark">
-  <header class="header">
+  <header class="header mat-elevation-z8">
     <span class="app-title"><a [routerLink]="['/home']">{{title}}</a></span>
     <span class="flex-stuff"></span>
     <app-search class="search"></app-search>
   </header>
   <div class="body">
-    <aside class="sidebar column">
+    <aside class="sidebar column mat-elevation-z8">
       <app-navigation class="navigation"></app-navigation>
     </aside>
     <main class="content column">
       <router-outlet></router-outlet>
     </main>
   </div>
-  <footer class="footer">
+  <footer class="footer  mat-elevation-z8">
     <app-player></app-player>
   </footer>
 </div>
