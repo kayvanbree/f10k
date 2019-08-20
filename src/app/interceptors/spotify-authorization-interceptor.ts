@@ -1,8 +1,10 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {Store} from '@ngxs/store';
 import {AuthenticationState} from '../store/states/authentication.state';
+import {catchError, map} from 'rxjs/operators';
+import {Login} from '../store/actions/authentication.actions';
 
 @Injectable()
 export class SpotifyAuthorizationInterceptor implements HttpInterceptor {
@@ -16,6 +18,13 @@ export class SpotifyAuthorizationInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${token}`
       }
     });
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.store.dispatch(new Login());
+        }
+        return throwError(error);
+      }),
+    );
   }
 }
