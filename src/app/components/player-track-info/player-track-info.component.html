@@ -1,17 +1,18 @@
-<div class="image">
+<div class="image column">
   <img src="{{player.current_track.album.images[2].url}}"/>
 </div>
-<div class="artist-text vertical-align">
-  <div class="track">
+<div class="artist-text vertical-align column">
+  <app-track-save-button
+    class="save-button"
+    [id]="player.current_track.id"
+  ></app-track-save-button>
+  <div class="track max-lines">
     {{player.current_track.name}}
   </div>
-  <div class="artist">
+  <div class="artist max-lines">
     <ng-container *ngFor="let artist of player.current_track.artists; let last = last">
       <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
       <ng-container *ngIf="!last">,</ng-container>
     </ng-container>
-  </div>
-  <div class="album">
-    {{player.current_track.album.name}}
   </div>
 </div>
