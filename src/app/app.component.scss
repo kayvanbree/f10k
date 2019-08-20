@@ -1,12 +1,10 @@
 .container {
   display: flex;
   height: 100vh;
-  background: grey;
   flex-direction: column;
 }
 
 .header {
-  background: #141414;
   display: flex;
   padding: 6px 10px;
   height: 36px;
@@ -15,11 +13,7 @@
     flex: 1;
   }
 
-  a {
-    color: rgb(29, 185, 84);
-    text-decoration: none;
-    font-size: 1.5em;
-    font-weight: bold;
+  .app-title a {
     display: block;
     padding: 3px 7px;
     float: left;
@@ -36,13 +30,7 @@
       margin-top: 0;
       border-top: 0;
     }
-
-    color: #fff;
   }
-}
-
-.footer {
-  background: #141414;
 }
 
 .body {
@@ -58,7 +46,6 @@
 }
 
 .sidebar {
-  background: #515151;
   flex: 0 0 40px;
   display: flex;
   flex-direction: column;
@@ -71,6 +58,5 @@
 
 .player {
   flex: 0 0 100px;
-  background: #141414;
 }
 

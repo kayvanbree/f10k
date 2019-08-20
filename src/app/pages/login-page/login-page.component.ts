@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {SpotifyAuthenticationService} from '../../providers/spotify-authentication.service';
+import {Store} from '@ngxs/store';
+import {Login} from '../../store/actions/authentication.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -8,9 +9,9 @@ import {SpotifyAuthenticationService} from '../../providers/spotify-authenticati
 })
 export class LoginPageComponent {
 
-  constructor(private spotifyAuthentication: SpotifyAuthenticationService) { }
+  constructor(private store: Store) { }
 
   public login(): void {
-    this.spotifyAuthentication.login();
+    this.store.dispatch(new Login());
   }
 }

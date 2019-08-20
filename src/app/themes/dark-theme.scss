@@ -1,0 +1,24 @@
+@import "~@angular/material/theming";
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$f10k-primary: mat-palette($mat-green);
+$f10k-accent: mat-palette($mat-amber, A200, A100, A400);
+$f10k-warn: mat-palette($mat-red);
+$f10k-dark: mat-dark-theme($f10k-primary, $f10k-accent, $f10k-warn);
+$config: mat-typography-config();
+
+@include angular-material-theme($f10k-dark);
+
+@import "./playback-controls-theme";
+@import "./nav-button-theme";
+@import "./player-track-info-theme";
+@import "./position-slider-theme";
+@import "./artist-detail-theme";
+@import "./app-theme";
+@import "./link-theme";
+
+@import "./mat-table-theme";
+@import "./mat-card-theme";

@@ -1,0 +1,17 @@
+@mixin player-track-info-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: map-get($theme, primary);
+
+  .artist-text {
+    color: mat-color($foreground, text);
+
+    a {
+      color: mat-color($foreground, text);
+
+      &:hover {
+        color: mat-color($primary);
+      }
+    }
+  }
+}
+@include player-track-info-theme($f10k-dark);

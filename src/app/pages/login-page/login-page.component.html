@@ -1,1 +1,12 @@
-<button (click)="login()">Log in</button>
+<mat-card class="login-form">
+  <mat-card-header>
+    <h1>Login with Spotify</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <span>To be able to use f10k, you will need to login using Spotify.</span>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button mat-raised-button color="primary" (click)="login()">Log in</button>
+  </mat-card-actions>
+</mat-card>
+

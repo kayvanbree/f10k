@@ -1,0 +1,13 @@
+@mixin playback-controls-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .playback-button {
+    color: mat-color($primary) !important;
+
+    &:hover {
+      border-color: mat-color($primary) !important;
+    }
+  }
+}
+
+@include playback-controls-theme($f10k-dark);

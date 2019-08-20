@@ -1,18 +1,19 @@
-<div class="container">
-  <header class="header">
-    <span><a [routerLink]="['/home']">{{title}}</a></span>
+<div class="container f10k-dark">
+  <header class="header mat-elevation-z8">
+    <span class="app-title"><a [routerLink]="['/home']">{{title}}</a></span>
+    <button *ngIf="(loggedIn | async) == false" (click)="logout()">Logout</button>
     <span class="flex-stuff"></span>
-    <app-search class="search"></app-search>
+    <app-search *ngIf="loggedIn | async" class="search"></app-search>
   </header>
   <div class="body">
-    <aside class="sidebar column">
+    <aside *ngIf="loggedIn | async" class="sidebar column mat-elevation-z8">
       <app-navigation class="navigation"></app-navigation>
     </aside>
     <main class="content column">
       <router-outlet></router-outlet>
     </main>
   </div>
-  <footer class="footer">
+  <footer *ngIf="loggedIn | async" class="footer  mat-elevation-z8">
     <app-player></app-player>
   </footer>
 </div>

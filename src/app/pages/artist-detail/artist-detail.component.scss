@@ -1,0 +1,16 @@
+.background-image{
+  height: 600px;
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  background-size: cover;
+}
+
+.background-gradient {
+  height: 100%;
+}
+
+.page-content {
+  .artist-info-card {
+    margin-top: -150px;
+  }
+}

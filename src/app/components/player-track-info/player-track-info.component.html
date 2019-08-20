@@ -1,0 +1,17 @@
+<div class="image">
+  <img src="{{player.current_track.album.images[2].url}}"/>
+</div>
+<div class="artist-text vertical-align">
+  <div class="track">
+    {{player.current_track.name}}
+  </div>
+  <div class="artist">
+    <ng-container *ngFor="let artist of player.current_track.artists; let last = last">
+      <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
+      <ng-container *ngIf="!last">,</ng-container>
+    </ng-container>
+  </div>
+  <div class="album">
+    {{player.current_track.album.name}}
+  </div>
+</div>

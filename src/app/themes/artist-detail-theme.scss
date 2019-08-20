@@ -1,0 +1,9 @@
+@mixin artist-detail-theme($theme) {
+  $background: map-get($theme, background);
+
+  .background-gradient {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.0), mat-color($background, background));
+  }
+}
+
+@include artist-detail-theme($f10k-dark);
