@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  padding: 10px;
+
+  .image {
+    height: 64px;
+    width: 64px;
+
+    img {
+      height: 64px;
+      width: 64px;
+    }
+  }
+
+  .artist-text {
+    margin-left: 10px;
+    height: 35px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}

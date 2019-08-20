@@ -1,0 +1,9 @@
+@mixin nav-button-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .nav-button {
+    color: mat-color($primary) !important;
+  }
+}
+
+@include nav-button-theme($f10k-dark);
