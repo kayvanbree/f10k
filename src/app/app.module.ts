@@ -66,6 +66,17 @@ const spotifyConfig = {
   authorizationUrl: environment.authorizationUrl,
 };
 
+const serialize = (value: any) => {
+  const newValue = {
+    ...value,
+    tracks: {
+      ...value.tracks,
+      tracks: [],
+    }
+  };
+  return JSON.stringify(newValue);
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +115,9 @@ const spotifyConfig = {
       AuthenticationState,
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsStoragePluginModule.forRoot(),
+    NgxsStoragePluginModule.forRoot({
+      serialize
+    }),
     FormsModule,
     BrowserAnimationsModule,
     MaterialImportModule,
