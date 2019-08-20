@@ -6,13 +6,15 @@
     class="save-button"
     [id]="player.current_track.id"
   ></app-track-save-button>
-  <div class="track max-lines">
-    {{player.current_track.name}}
-  </div>
-  <div class="artist max-lines">
-    <ng-container *ngFor="let artist of player.current_track.artists; let last = last">
-      <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
-      <ng-container *ngIf="!last">,</ng-container>
-    </ng-container>
+  <div class="text">
+    <div class="track max-lines">
+      {{player.current_track.name}}
+    </div>
+    <div class="artist max-lines">
+      <ng-container *ngFor="let artist of player.current_track.artists; let last = last">
+        <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
+        <ng-container *ngIf="!last">,</ng-container>
+      </ng-container>
+    </div>
   </div>
 </div>
