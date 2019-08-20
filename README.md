@@ -3,6 +3,13 @@
 f10k should become the answer to the 10k saving limit of Spotify. This web-based player
 can be used to save tracks, artists and albums by saving the corresponding ids to its own storage.
 
+## Demo
+
+You can find a demo at https://kayvanbree.github.io/f10k/tracks.
+
+WARNING: as I did not release a real version yet, the demo will be subject to change. 
+You can LOSE your saved songs as long as we don't have a backend yet.
+
 ## Current features
 
 - Save tracks and artists

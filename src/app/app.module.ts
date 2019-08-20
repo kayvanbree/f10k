@@ -43,6 +43,7 @@ import { PlaybackControlsComponent } from './components/playback-controls/playba
 import {MinutesSecondsPipe} from './pipes/minutes-seconds.pipe';
 import { VolumeControlComponent } from './components/volume-control/volume-control.component';
 import { PlayerTrackInfoComponent } from './components/player-track-info/player-track-info.component';
+import {AuthenticationState} from './store/states/authentication.state';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -100,6 +101,7 @@ const spotifyConfig = {
       SearchState,
       TrackState,
       PlayerState,
+      AuthenticationState,
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot(),

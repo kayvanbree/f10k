@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {SpotifyConfig} from '../definitions/spotify-config';
+import {SpotifyConfig} from '../../definitions/spotify-config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,6 @@ export class SpotifyAuthenticationService {
 
   getToken(): string {
     return localStorage.getItem(SpotifyAuthenticationService.tokenKey);
-  }
-
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem(SpotifyAuthenticationService.tokenKey);
   }
 
   login() {

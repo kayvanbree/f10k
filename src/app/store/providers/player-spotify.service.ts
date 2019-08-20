@@ -1,9 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
 import {SpotifyConfig} from '../../definitions/spotify-config';
 import {HttpClient} from '@angular/common/http';
-import {SpotifyAuthenticationService} from '../../providers/spotify-authentication.service';
+import {SpotifyAuthenticationService} from './spotify-authentication.service';
 import {RegisterPlayer, UpdateDeviceStatus, UpdatePlayerStatus, UpdateVolume} from '../actions/player.actions';
 import {Store} from '@ngxs/store';
+import {AuthenticationState} from '../states/authentication.state';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class PlayerSpotifyService {
     this.player = new (window as any).Spotify.Player({
       name: 'f10k',
       getOAuthToken: (callback: (t: string) => void) => {
-        callback(this.spotifyAuthenticationService.getToken());
+        callback(this.store.selectSnapshot(AuthenticationState.token));
       },
       volume: 0.2
     });
@@ -43,11 +44,11 @@ export class PlayerSpotifyService {
     });
 
     this.player.addListener('ready', (data) => {
-      console.log('The Web Playback SDK is ready to play music!');
+      // console.log('The Web Playback SDK is ready to play music!');
     });
 
     this.player.addListener('not_ready', ({device_id}) => {
-      console.log('The Web Playback SDK is not ready to play music!');
+      // console.log('The Web Playback SDK is not ready to play music!');
     });
 
     this.player.on('ready', (data) => {
@@ -60,7 +61,7 @@ export class PlayerSpotifyService {
 
     this.player.on('not_ready', (data) => {
       const {device_id} = data;
-      console.log('Connected with Device ID', device_id);
+      // console.log('Connected with Device ID', device_id);
     });
 
     this.player.addListener('initialization_error', (e) => {
