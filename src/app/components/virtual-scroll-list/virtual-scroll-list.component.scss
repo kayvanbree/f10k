@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.playing {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.list-container {
+  flex: 1;
+  overflow: auto;
+
+  border-bottom: 1px rgba(255,255,255,.12) solid;
+  box-sizing: content-box;
+}
+
+.table {
+  width: 100%;
+
+  tr {
+    height: 32px;
+  }
+
+  td {
+    &.mat-column-image,
+    &.mat-column-album-image {
+      width: 32px;
+    }
+
+    &.mat-column-popularity {
+      .progress-bar {
+        width: 100%;
+      }
+    }
+
+    &.mat-column-track-saved,
+    &.mat-column-artist-saved,
+    &.mat-column-duration,
+    &.mat-column-popularity,
+    &.mat-column-album-saved {
+      width: 40px;
+    }
+  }
+
+  img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+}

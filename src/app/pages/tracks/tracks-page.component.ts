@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngxs/store';
-import {GetTracks} from '../../store/actions/track.actions';
-import {LoadRequestEvent} from '../../components/entity-list/entity-list.component';
 import {TrackModel} from '../../store/models/track.model';
 import {PlayTrack} from '../../store/actions/player.actions';
 import {TrackState} from '../../store/states/track.state';
+import {TrackDataSource} from '../../datasources/track-data-source';
+import {TrackSpotifyService} from '../../store/providers/track-spotify.service';
 
 @Component({
   selector: 'app-tracks-page',
@@ -15,17 +15,18 @@ export class TracksPageComponent implements OnInit {
   public ids: string[];
   public pageSize = 50;
   public selector = TrackState.tracks;
+  public dataSource: TrackDataSource;
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private trackService: TrackSpotifyService,
+  ) {}
 
   public ngOnInit(): void {
     this.store.select(state => state.tracks.ids).subscribe((value) => {
       this.ids = value;
+      this.dataSource = new TrackDataSource(this.trackService, this.ids, this.pageSize);
     });
-  }
-
-  public onLoadRequest(event: LoadRequestEvent): void {
-    this.store.dispatch(new GetTracks(this.ids, event.page, event.pageSize));
   }
 
   public onRowDoubleClick(event: TrackModel): void {

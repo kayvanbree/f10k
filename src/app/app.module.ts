@@ -48,6 +48,7 @@ import {AlbumState} from './store/states/album.state';
 import { AlbumSaveButtonComponent } from './components/album-save-button/album-save-button.component';
 import { AlbumDetailPageComponent } from './pages/album-detail-page/album-detail-page.component';
 import { ArtistNamesComponent } from './components/artist-names/artist-names.component';
+import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -114,6 +115,7 @@ export function serialize(value: any) {
     AlbumSaveButtonComponent,
     AlbumDetailPageComponent,
     ArtistNamesComponent,
+    VirtualScrollListComponent,
   ],
   imports: [
     BrowserModule,
