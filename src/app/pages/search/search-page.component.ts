@@ -28,7 +28,7 @@ export class SearchPageComponent implements OnInit {
   public playlistTotal: number;
   public playlistSelector = SearchState.playlists;
 
-  public pageSize = 10;
+  public pageSize = 50;
 
   private query: string;
 
@@ -80,10 +80,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   public onTrackDoubleClick(event) {
-    const start = event.page * event.pageSize;
-    const end = start + event.pageSize;
-    const pageIds = this.trackIds.slice(start, end);
-    this.store.dispatch(new PlayTrack(pageIds, event.id));
+    this.store.dispatch(new PlayTrack(this.trackIds, event.id));
   }
 
   public onArtistDoubleClick(event) {

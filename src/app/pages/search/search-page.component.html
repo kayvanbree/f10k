@@ -1,55 +1,53 @@
-<ng-container *ngIf="trackTotal > 0">
-  <h1>Tracks ({{trackTotal}})</h1>
-  <app-entity-list
-    class="item-list"
-    [pageSize]="pageSize"
-    [page]="0"
-    [columns]="['album-image', 'artist', 'name', 'popularity', 'duration', 'track-saved']"
-    [selector]="tracksSelector"
-    [total]="trackTotal"
-    (loadRequest)="onLoadRequest($event, 'track')"
-    (rowDoubleClick)="onTrackDoubleClick($event)"
-  ></app-entity-list>
-</ng-container>
+<mat-tab-group class="search-tabs">
+  <mat-tab *ngIf="trackTotal > 0" [label]="'Tracks (' + trackTotal + ')'">
+    <app-entity-list
+      class="item-list"
+      [pageSize]="pageSize"
+      [page]="0"
+      [columns]="['album-image', 'name', 'artist', 'album', 'popularity', 'duration', 'track-saved']"
+      [selector]="tracksSelector"
+      [total]="trackTotal"
+      (loadRequest)="onLoadRequest($event, 'track')"
+      (rowDoubleClick)="onTrackDoubleClick($event)"
+    ></app-entity-list>
+  </mat-tab>
 
-<ng-container *ngIf="artistTotal > 0">
-  <h1>Artists ({{artistTotal}})</h1>
-  <app-entity-list
-    class="item-list"
-    [pageSize]="pageSize"
-    [page]="0"
-    [columns]="['image', 'name', 'popularity', 'artist-saved']"
-    [selector]="artistSelector"
-    [total]="artistTotal"
-    (loadRequest)="onLoadRequest($event, 'artist')"
-    (rowDoubleClick)="onArtistDoubleClick($event)"
-  ></app-entity-list>
-</ng-container>
+  <mat-tab *ngIf="artistTotal > 0" [label]="'Artists (' + artistTotal + ')'">
+    <app-entity-list
+      class="item-list"
+      [pageSize]="pageSize"
+      [page]="0"
+      [columns]="['image', 'name', 'popularity', 'artist-saved']"
+      [selector]="artistSelector"
+      [total]="artistTotal"
+      (loadRequest)="onLoadRequest($event, 'artist')"
+      (rowDoubleClick)="onArtistDoubleClick($event)"
+    ></app-entity-list>
+  </mat-tab>
 
-<ng-container *ngIf="albumTotal > 0">
-  <h1>Albums ({{albumTotal}})</h1>
-  <app-entity-list
-    class="item-list"
-    [pageSize]="pageSize"
-    [page]="0"
-    [columns]="['image', 'artist', 'name', 'popularity', 'album-saved']"
-    [selector]="albumSelector"
-    [total]="albumTotal"
-    (loadRequest)="onLoadRequest($event, 'album')"
-    (rowDoubleClick)="onAlbumDoubleClick($event)"
-  ></app-entity-list>
-</ng-container>
+  <mat-tab *ngIf="albumTotal > 0" [label]="'Albums (' + albumTotal + ')'">
+    <app-entity-list
+      class="item-list"
+      [pageSize]="pageSize"
+      [page]="0"
+      [columns]="['image', 'name', 'artist', 'popularity', 'album-saved']"
+      [selector]="albumSelector"
+      [total]="albumTotal"
+      (loadRequest)="onLoadRequest($event, 'album')"
+      (rowDoubleClick)="onAlbumDoubleClick($event)"
+    ></app-entity-list>
+  </mat-tab>
 
-<ng-container *ngIf="playlistTotal > 0">
-  <h1>Playlists ({{playlistTotal}})</h1>
-  <app-entity-list
-    class="item-list"
-    [pageSize]="pageSize"
-    [page]="0"
-    [columns]="['image', 'name']"
-    [selector]="playlistSelector"
-    [total]="playlistTotal"
-    (loadRequest)="onLoadRequest($event, 'playlist')"
-    (rowDoubleClick)="onPlaylistDoubleClick($event)"
-  ></app-entity-list>
-</ng-container>
+  <mat-tab *ngIf="playlistTotal > 0" [label]="'Playlists (' + playlistTotal + ')'">
+    <app-entity-list
+      class="item-list"
+      [pageSize]="pageSize"
+      [page]="0"
+      [columns]="['image', 'name']"
+      [selector]="playlistSelector"
+      [total]="playlistTotal"
+      (loadRequest)="onLoadRequest($event, 'playlist')"
+      (rowDoubleClick)="onPlaylistDoubleClick($event)"
+    ></app-entity-list>
+  </mat-tab>
+</mat-tab-group>

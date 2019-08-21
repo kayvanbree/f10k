@@ -1,6 +1,14 @@
 import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store';
 import {ArtistStateModel} from '../models/artist-state.model';
-import {GetArtist, GetArtists, GetArtistsSuccess, GetArtistSuccess, RemoveArtist, SaveArtist} from '../actions/artist.actions';
+import {
+  GetArtist,
+  GetArtistAlbums, GetArtistAlbumsSuccess,
+  GetArtists,
+  GetArtistsSuccess,
+  GetArtistSuccess,
+  RemoveArtist,
+  SaveArtist
+} from '../actions/artist.actions';
 import {append, patch, removeItem} from '@ngxs/store/operators';
 import {ArtistSpotifyService} from '../providers/artist-spotify.service';
 
@@ -25,6 +33,11 @@ export class ArtistState {
   @Selector()
   static artists(state: ArtistStateModel) {
     return state.artists;
+  }
+
+  @Selector()
+  static currentArtist(state: ArtistStateModel) {
+    return state.currentArtist;
   }
 
   constructor(private artistService: ArtistSpotifyService) {}
@@ -85,5 +98,25 @@ export class ArtistState {
         ids: removeItem<string>(name => name === action.id),
       }),
     );
+  }
+
+  @Action(GetArtistAlbums)
+  public getArtistAlbums(ctx: StateContext<ArtistStateModel>, action: GetArtistAlbums) {
+    this.artistService.getArtistAlbums(action.id, action.page, action.pageSize).subscribe((value: any) => {
+      ctx.dispatch(new GetArtistAlbumsSuccess(value.items, value.total));
+    });
+  }
+
+  @Action(GetArtistAlbumsSuccess)
+  public getArtistAlbumsSuccess(ctx: StateContext<ArtistStateModel>, action: GetArtistAlbumsSuccess) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      currentArtist: {
+        ...state.currentArtist,
+        albums: action.albums,
+        totalAlbums: action.total,
+      },
+    });
   }
 }

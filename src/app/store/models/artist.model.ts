@@ -1,4 +1,5 @@
 import {SpotifyEntityModel} from './spotify-entity.model';
+import {AlbumModel} from './album.model';
 
 export interface ArtistModel extends SpotifyEntityModel {
   followers: {
@@ -8,4 +9,6 @@ export interface ArtistModel extends SpotifyEntityModel {
   genres: string[];
   images: any[];
   popularity: number;
+  albums: AlbumModel[];
+  totalAlbums: number;
 }

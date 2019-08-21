@@ -32,7 +32,6 @@ export class AlbumsPageComponent implements OnInit {
   }
 
   public onRowDoubleClick(event: AlbumModel): void {
-    console.log('Go to album page');
-    // this.router.navigate(['album', event.id]);
+    this.router.navigate(['album', event.id]);
   }
 }

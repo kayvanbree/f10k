@@ -23,19 +23,16 @@
     </ng-container>
 
     <ng-container matColumnDef="album">
-      <th mat-header-cell *matHeaderCellDef> Album </th>
+      <th mat-header-cell *matHeaderCellDef>Album</th>
       <td mat-cell *matCellDef="let element">
         <a [routerLink]="['/album', element.album.id]">{{element.album.name}}</a>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="artist">
-      <th mat-header-cell *matHeaderCellDef> Artist </th>
+      <th mat-header-cell *matHeaderCellDef>Artist</th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngFor="let artist of element.artists; let last = last">
-          <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
-          <ng-container *ngIf="!last">, </ng-container>
-        </ng-container>
+        <app-artist-names [artists]="element.artists"></app-artist-names>
       </td>
     </ng-container>
 
@@ -69,5 +66,5 @@
     <tr mat-row *matRowDef="let row; columns: columns;" (dblclick)="rowDoubleClick.emit(row)"></tr>
   </table>
 </div>
-<mat-paginator [pageSize]="pageSize" [length]="total" (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+<mat-paginator *ngIf="total > pageSize" [pageSize]="pageSize" [length]="total" (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
 

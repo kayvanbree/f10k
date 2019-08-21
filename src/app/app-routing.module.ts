@@ -10,10 +10,12 @@ import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-pag
 import {TracksPageComponent} from './pages/tracks/tracks-page.component';
 import {ImportPageComponent} from './pages/import/import-page.component';
 import {AlbumsPageComponent} from './pages/album-page/albums-page.component';
+import {AlbumDetailPageComponent} from './pages/album-detail-page/album-detail-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'artist/:id', component: ArtistDetailPageComponent, canActivate: [SpotifyGuard] },
+  { path: 'album/:id', component: AlbumDetailPageComponent, canActivate: [SpotifyGuard] },
   { path: 'artists', component: ArtistsPageComponent, canActivate: [SpotifyGuard] },
   { path: 'albums', component: AlbumsPageComponent, canActivate: [SpotifyGuard] },
   { path: 'tracks', component: TracksPageComponent, canActivate: [SpotifyGuard] },

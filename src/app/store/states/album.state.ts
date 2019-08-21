@@ -2,7 +2,7 @@ import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store
 import {AlbumSpotifyService} from '../providers/album-spotify.service';
 import {AlbumStateModel} from '../models/album-state.model';
 import {append, patch, removeItem} from '@ngxs/store/operators';
-import {GetAlbums, GetAlbumsSuccess, RemoveAlbum, SaveAlbum} from '../actions/album.actions';
+import {GetAlbum, GetAlbums, GetAlbumsSuccess, GetAlbumSuccess, RemoveAlbum, SaveAlbum} from '../actions/album.actions';
 
 @State<AlbumStateModel>({
   name: 'albums',
@@ -21,6 +21,11 @@ export class AlbumState {
   @Selector()
   static albums(state: AlbumStateModel) {
     return state.albums;
+  }
+
+  @Selector()
+  static currentAlbum(state: AlbumStateModel) {
+    return state.currentAlbum;
   }
 
   constructor(private albumService: AlbumSpotifyService) {}
@@ -42,6 +47,27 @@ export class AlbumState {
         albums: action.albums,
       })
     );
+  }
+
+  @Action(GetAlbum)
+  public getArtist(ctx: StateContext<AlbumStateModel>, action: GetAlbum) {
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      currentAlbumId: action.id,
+    });
+    this.albumService.getAlbum(action.id).subscribe((value: any) => {
+      ctx.dispatch(new GetAlbumSuccess(value));
+    });
+  }
+
+  @Action(GetAlbumSuccess)
+  public getArtistSuccess(ctx: StateContext<AlbumStateModel>, action: GetAlbumSuccess) {
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      currentAlbum: action.album,
+    });
   }
 
   @Action(SaveAlbum)
