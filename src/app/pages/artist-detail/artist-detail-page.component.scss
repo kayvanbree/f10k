@@ -1,16 +1,23 @@
-.background-image{
-  height: 600px;
-  background-repeat: no-repeat;
-  background-clip: padding-box;
-  background-size: cover;
-}
-
-.background-gradient {
+:host,
+.container {
   height: 100%;
 }
 
-.page-content {
-  .album-info-card {
-    margin-top: -150px;
-  }
+.artist-info,
+.album-label
+{
+  padding: 20px;
+}
+
+.artist-info-text {
+  margin-left: 20px;
+}
+
+.artist-image {
+  width: 128px;
+  height: 128px;
+}
+
+.album-list {
+  height: 100%;
 }

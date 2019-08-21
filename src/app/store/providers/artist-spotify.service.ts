@@ -18,4 +18,8 @@ export class ArtistSpotifyService {
   getArtists(ids: string[]) {
     return this.http.get(`${this.config.apiBase}/artists?ids=${ids}`);
   }
+
+  getArtistAlbums(id: string, page: number, pageSize: number) {
+    return this.http.get(`${this.config.apiBase}/artists/${id}/albums?limit=${pageSize}&offset=${page}&market=from_token&include_groups=album`);
+  }
 }

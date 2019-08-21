@@ -1,22 +1,35 @@
-<ng-container *ngIf="artist">
-  <div
-    class="background-image"
-    [ngStyle]="{'background-image': artist.images && artist.images[0] ? 'url(' + artist.images[0].url + ')' : ''}"
-  >
-    <div class="background-gradient"></div>
-  </div>
+<div class="flex-col container" *ngIf="artist">
+  <div class="artist-info flex-row">
+    <div class="image-container">
+      <img
+        class="artist-image"
+        *ngIf="artist?.images?.length > 0" [src]="artist.images[0].url"
+      />
+    </div>
 
-  <div class="page-content">
-    <mat-card class="album-info-card">
-      <mat-card-header>
-        <h1>{{artist.name}}</h1>
-        <app-artist-save-button [id]="artist.id"></app-artist-save-button>
-      </mat-card-header>
-      <div>
+    <div class="artist-info-text flex">
+      <h1>{{artist.name}}</h1>
+      <app-artist-save-button [id]="artist.id"></app-artist-save-button>
+      <div *ngIf="artist?.genres?.length > 0">
         Genres:
         <ng-container *ngFor="let genre of artist.genres">{{genre}},</ng-container>
       </div>
-    </mat-card>
+    </div>
   </div>
-</ng-container>
+
+  <div class="album-label"><h2>Albums</h2></div>
+
+  <div class="flex">
+    <app-entity-list
+      class="album-list"
+      [page]="0"
+      [pageSize]="pageSize"
+      [columns]="['image', 'name', 'popularity', 'album-saved']"
+      [selector]="albumsSelector"
+      [total]="total"
+      (loadRequest)="onLoadRequest($event)"
+      (rowDoubleClick)="onRowDoubleClick($event)"
+    ></app-entity-list>
+  </div>
+</div>
 

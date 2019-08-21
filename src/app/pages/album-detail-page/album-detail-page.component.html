@@ -2,12 +2,12 @@
   <div class="album-info flex-row">
     <div class="image-container">
       <img
-        class="album-image"
+        class="artist-image"
         *ngIf="album?.images?.length > 0" [src]="album.images[0].url"
       />
     </div>
 
-    <div class="artist-information flex">
+    <div class="album-info-text flex">
       <h1>{{album.name}} ({{album.release_date}})</h1>
       <h2>by <app-artist-names [artists]="album.artists"></app-artist-names></h2>
       <app-album-save-button [id]="album.id"></app-album-save-button>

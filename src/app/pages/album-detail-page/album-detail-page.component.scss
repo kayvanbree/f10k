@@ -3,30 +3,15 @@
   height: 100%;
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col{
-  display: flex;
-  flex-direction: column;
-}
-
-.flex {
-  flex: 1 0 0;
-  min-height: 0;
-}
-
 .album-info {
   padding: 20px;
 }
 
-.artist-information {
+.album-info-text {
   margin-left: 20px;
 }
 
-.album-image {
+.artist-image {
   width: 128px;
   height: 128px;
 }

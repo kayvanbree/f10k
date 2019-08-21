@@ -3,7 +3,6 @@ import {AlbumSpotifyService} from '../providers/album-spotify.service';
 import {AlbumStateModel} from '../models/album-state.model';
 import {append, patch, removeItem} from '@ngxs/store/operators';
 import {GetAlbum, GetAlbums, GetAlbumsSuccess, GetAlbumSuccess, RemoveAlbum, SaveAlbum} from '../actions/album.actions';
-import {ArtistStateModel} from '../models/artist-state.model';
 
 @State<AlbumStateModel>({
   name: 'albums',
@@ -22,6 +21,11 @@ export class AlbumState {
   @Selector()
   static albums(state: AlbumStateModel) {
     return state.albums;
+  }
+
+  @Selector()
+  static currentAlbum(state: AlbumStateModel) {
+    return state.currentAlbum;
   }
 
   constructor(private albumService: AlbumSpotifyService) {}

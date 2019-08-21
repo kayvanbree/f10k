@@ -8,6 +8,7 @@ import {GetTracks} from '../../store/actions/track.actions';
 import {TrackState} from '../../store/states/track.state';
 import {PlayTrack} from '../../store/actions/player.actions';
 import {TrackModel} from '../../store/models/track.model';
+import {AlbumState} from '../../store/states/album.state';
 
 @Component({
   selector: 'app-album-detail-page',
@@ -30,7 +31,7 @@ export class AlbumDetailPageComponent implements OnInit {
       this.store.dispatch(new GetAlbum(value.id));
     });
 
-    this.store.select(state => state.albums.currentAlbum).subscribe((value) => {
+    this.store.select(AlbumState.currentAlbum).subscribe((value: AlbumModel) => {
       this.album = value;
       this.trackIds = this.album.tracks.items.map(x => x.id);
       this.onLoadRequest({page: 0, pageSize: this.pageSize});
