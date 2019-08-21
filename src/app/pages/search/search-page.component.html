@@ -4,7 +4,7 @@
       class="item-list"
       [pageSize]="pageSize"
       [page]="0"
-      [columns]="['album-image', 'name', 'artist', 'popularity', 'duration', 'track-saved']"
+      [columns]="['album-image', 'name', 'artist', 'album', 'popularity', 'duration', 'track-saved']"
       [selector]="tracksSelector"
       [total]="trackTotal"
       (loadRequest)="onLoadRequest($event, 'track')"

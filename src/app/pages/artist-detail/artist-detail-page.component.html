@@ -7,12 +7,13 @@
   </div>
 
   <div class="page-content">
-    <mat-card class="artist-info-card">
+    <mat-card class="album-info-card">
       <mat-card-header>
         <h1>{{artist.name}}</h1>
         <app-artist-save-button [id]="artist.id"></app-artist-save-button>
       </mat-card-header>
-      <div>Genres:
+      <div>
+        Genres:
         <ng-container *ngFor="let genre of artist.genres">{{genre}},</ng-container>
       </div>
     </mat-card>

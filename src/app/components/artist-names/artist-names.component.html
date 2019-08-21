@@ -1,0 +1,4 @@
+<ng-container *ngFor="let artist of artists; let last = last">
+  <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
+  <ng-container *ngIf="!last">, </ng-container>
+</ng-container>

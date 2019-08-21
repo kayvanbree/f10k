@@ -1,7 +1,7 @@
 <app-entity-list
   [pageSize]="50"
   [page]="0"
-  [columns]="['album-image', 'artist', 'name', 'popularity','duration','track-saved']"
+  [columns]="['album-image','name','artist','album','popularity','duration','track-saved']"
   [selector]="selector"
   [total]="ids.length"
   (loadRequest)="onLoadRequest($event)"
