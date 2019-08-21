@@ -9,7 +9,7 @@ import {
   MatListModule,
   MatPaginatorModule,
   MatProgressBarModule, MatSliderModule,
-  MatTableModule,
+  MatTableModule, MatTabsModule,
   MatTooltipModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
@@ -28,6 +28,7 @@ const modules = [
   MatInputModule,
   FormsModule,
   MatSliderModule,
+  MatTabsModule,
 ];
 
 @NgModule({

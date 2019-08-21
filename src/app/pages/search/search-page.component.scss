@@ -1,3 +1,8 @@
-.item-list {
-  height: 418px;
+.item-list,
+.search-tabs {
+  height: 100%;
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  flex: 1;
 }

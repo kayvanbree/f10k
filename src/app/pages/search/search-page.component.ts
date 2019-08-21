@@ -28,7 +28,7 @@ export class SearchPageComponent implements OnInit {
   public playlistTotal: number;
   public playlistSelector = SearchState.playlists;
 
-  public pageSize = 10;
+  public pageSize = 50;
 
   private query: string;
 
