@@ -4,6 +4,7 @@ export class GetTracks {
   static readonly type = '[Track] GetTracks';
   constructor(
     public ids: string[],
+    public page: number,
     public pageSize: number
   ) {}
 }

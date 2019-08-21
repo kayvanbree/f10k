@@ -1,24 +1,26 @@
 <h1>Tracks ({{trackTotal}})</h1>
-<app-track-list
+<app-entity-list
   class="item-list"
-  *ngIf="trackIds"
-  [ids]="trackIds"
-  [pageSize]="10"
+  [pageSize]="pageSize"
+  [page]="0"
+  [columns]="['album-image', 'artist', 'name', 'popularity', 'duration', 'track-saved']"
+  [selector]="tracksSelector"
   [total]="trackTotal"
-  (pageChange)="onPageChange($event, 'track')"
-  [loading]="searching"
-></app-track-list>
+  (loadRequest)="onLoadRequest($event, 'track')"
+  (rowDoubleClick)="onTrackDoubleClick($event)"
+></app-entity-list>
 
 <h1>Artists ({{artistTotal}})</h1>
-<app-artist-list
+<app-entity-list
   class="item-list"
-  *ngIf="artistIds"
-  [ids]="artistIds"
-  [pageSize]="10"
+  [pageSize]="pageSize"
+  [page]="0"
+  [columns]="['image', 'name', 'popularity', 'artist-saved']"
+  [selector]="artistSelector"
   [total]="artistTotal"
-  (pageChange)="onPageChange($event, 'artist')"
-  [loading]="searching"
-></app-artist-list>
+  (loadRequest)="onLoadRequest($event, 'artist')"
+  (rowDoubleClick)="onArtistDoubleClick($event)"
+></app-entity-list>
 
 <h1>Albums (0)</h1>
 

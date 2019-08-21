@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '@ngxs/store';
 import {Search} from '../../store/actions/search.actions';
+import {SearchState} from '../../store/states/search.state';
+import {LoadRequestEvent} from '../../components/entity-list/entity-list.component';
+import {PlayTrack} from '../../store/actions/player.actions';
 
 @Component({
   selector: 'app-search-page',
@@ -11,22 +14,20 @@ import {Search} from '../../store/actions/search.actions';
 export class SearchPageComponent implements OnInit {
   public trackIds: string[];
   public trackTotal: number;
-  public trackResults: any;
+  public tracksSelector = SearchState.tracks;
 
   public artistIds: string[];
   public artistTotal: number;
-  public artistResults: any;
-
-  public results: any;
+  public artistSelector = SearchState.artists;
 
   public pageSize = 10;
 
   private query: string;
-  public searching = false;
 
   constructor(
     private route: ActivatedRoute,
     private store: Store,
+    private router: Router,
   ) {
   }
 
@@ -39,19 +40,16 @@ export class SearchPageComponent implements OnInit {
         'track',
         'playlist',
       ]));
-      this.searching = true;
     });
 
     this.store.select(state => state.search.results).subscribe((value) => {
       if (value) {
         if (value.tracks) {
-          this.trackResults = value.tracks;
           this.trackIds = value.tracks.items.map(x => x.id);
           this.trackTotal = value.tracks.total;
         }
 
         if (value.artists) {
-          this.artistResults = value.artists;
           this.artistIds = value.artists.items.map(x => x.id);
           this.artistTotal = value.artists.total;
         }
@@ -59,7 +57,18 @@ export class SearchPageComponent implements OnInit {
     });
   }
 
-  onPageChange(offset: number, type: string) {
-    this.store.dispatch(new Search(this.query, this.pageSize, offset, [type]));
+  public onLoadRequest(event: LoadRequestEvent, type: string) {
+    this.store.dispatch(new Search(this.query, event.pageSize, event.page, [type]));
+  }
+
+  public onTrackDoubleClick(event) {
+    const start = event.page * event.pageSize;
+    const end = start + event.pageSize;
+    const pageIds = this.trackIds.slice(start, end);
+    this.store.dispatch(new PlayTrack(pageIds, event.id));
+  }
+
+  public onArtistDoubleClick(event) {
+    this.router.navigate(['artist', event.id]);
   }
 }

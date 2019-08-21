@@ -10,5 +10,8 @@ export class Search {
 
 export class SearchSuccess {
   static readonly type = '[Search] SearchSuccess';
-  constructor(public results: any) {}
+  constructor(
+    public results: any,
+    public type: string[],
+  ) {}
 }

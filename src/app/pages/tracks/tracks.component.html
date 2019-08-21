@@ -1,7 +1,9 @@
-<app-track-list
-  class="item-list"
-  [ids]="ids"
+<app-entity-list
   [pageSize]="50"
+  [page]="0"
+  [columns]="['album-image', 'artist', 'name', 'popularity','duration','track-saved']"
+  [selector]="selector"
   [total]="ids.length"
-  (pageChange)=onPageChange($event)
-></app-track-list>
+  (loadRequest)="onLoadRequest($event)"
+  (rowDoubleClick)="onRowDoubleClick($event)"
+></app-entity-list>

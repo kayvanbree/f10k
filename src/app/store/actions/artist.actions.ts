@@ -4,6 +4,7 @@ export class GetArtists {
   static readonly type = '[Artist] GetArtists';
   constructor(
     public ids: string[],
+    public page: number,
     public pageSize: number
   ) {}
 }

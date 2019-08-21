@@ -1,4 +1,4 @@
-import {Action, State, StateContext} from '@ngxs/store';
+import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {SearchStateModel} from '../models/search-state.model';
 import {Search, SearchSuccess} from '../actions/search.actions';
 import {SearchSpotifyService} from '../providers/search-spotify.service';
@@ -11,6 +11,16 @@ import {SearchSpotifyService} from '../providers/search-spotify.service';
   }
 })
 export class SearchState {
+  @Selector()
+  static tracks(state: SearchStateModel) {
+    return state.results.tracks.items;
+  }
+
+  @Selector()
+  static artists(state: SearchStateModel) {
+    return state.results.artists.items;
+  }
+
   constructor(private searchService: SearchSpotifyService) {}
 
   @Action(Search)
@@ -21,7 +31,7 @@ export class SearchState {
       query: action.query,
     });
     this.searchService.search(action.query, action.pageSize, action.offset * action.pageSize, action.type).subscribe((value: any) => {
-      ctx.dispatch(new SearchSuccess(value));
+      ctx.dispatch(new SearchSuccess(value, action.type));
     });
   }
 
@@ -30,7 +40,11 @@ export class SearchState {
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      results: action.results,
+      results: {
+        ...state.results,
+        tracks: action.results.tracks ? action.results.tracks : state.results.tracks,
+        artists: action.results.artists ? action.results.artists : state.results.artists,
+      },
     });
   }
 }

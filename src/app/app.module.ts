@@ -16,12 +16,10 @@ import {ArtistState} from './store/states/artist.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {FormsModule} from '@angular/forms';
 import {SearchState} from './store/states/search.state';
-import { ArtistListComponent } from './components/artist-list/artist-list.component';
 import {ArtistDetailComponent} from './pages/artist-detail/artist-detail.component';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
-import { TrackListComponent } from './components/track-list/track-list.component';
 import {AlbumSpotifyService} from './store/providers/album-spotify.service';
 import {ArtistSpotifyService} from './store/providers/artist-spotify.service';
 import {PlaylistSpotifyService} from './store/providers/playlist-spotify.service';
@@ -44,6 +42,7 @@ import {MinutesSecondsPipe} from './pipes/minutes-seconds.pipe';
 import { VolumeControlComponent } from './components/volume-control/volume-control.component';
 import { PlayerTrackInfoComponent } from './components/player-track-info/player-track-info.component';
 import {AuthenticationState} from './store/states/authentication.state';
+import { EntityListComponent } from './components/entity-list/entity-list.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -93,10 +92,8 @@ export function serialize(value: any) {
     NavigationComponent,
     ArtistsComponent,
     SearchPageComponent,
-    ArtistListComponent,
     ArtistDetailComponent,
     ArtistSaveButtonComponent,
-    TrackListComponent,
     TrackSaveButtonComponent,
     TracksComponent,
     PlayerComponent,
@@ -107,6 +104,7 @@ export function serialize(value: any) {
     MinutesSecondsPipe,
     VolumeControlComponent,
     PlayerTrackInfoComponent,
+    EntityListComponent,
   ],
   imports: [
     BrowserModule,
