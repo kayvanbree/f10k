@@ -23,7 +23,6 @@ export class SearchPageComponent implements OnInit {
     private store: Store,
     private router: Router,
     private searchService: SearchSpotifyService,
-    private changeDetector: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -32,7 +31,6 @@ export class SearchPageComponent implements OnInit {
       this.artistDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'artist');
       this.albumDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'album');
       this.playlistDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'playlist');
-      this.changeDetector.detectChanges();
     });
   }
 

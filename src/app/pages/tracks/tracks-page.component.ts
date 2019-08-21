@@ -21,15 +21,12 @@ export class TracksPageComponent implements OnInit {
   constructor(
     private store: Store,
     private trackService: TrackSpotifyService,
-    private changeDetector: ChangeDetectorRef,
   ) {}
 
   public ngOnInit(): void {
     this.store.select(state => state.tracks.ids).subscribe((value) => {
       this.ids = value ? value : [];
-      console.log(this.ids);
       this.dataSource = new TrackDataSource(this.trackService, this.ids, this.pageSize);
-      this.changeDetector.detectChanges();
     });
   }
 

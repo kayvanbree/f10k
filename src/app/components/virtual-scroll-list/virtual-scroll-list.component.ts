@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {SpotifyEntityModel} from '../../store/models/spotify-entity.model';
 import {DataSource} from '@angular/cdk/table';
 import {PagedDataSource} from '../../datasources/paged-data-source';
@@ -8,7 +8,7 @@ import {PagedDataSource} from '../../datasources/paged-data-source';
   templateUrl: './virtual-scroll-list.component.html',
   styleUrls: ['./virtual-scroll-list.component.scss']
 })
-export class VirtualScrollListComponent implements OnInit {
+export class VirtualScrollListComponent implements OnInit, OnChanges {
   /**
    * The dataSource this list subscribes to
    */
@@ -34,6 +34,10 @@ export class VirtualScrollListComponent implements OnInit {
   @Output() public rowDoubleClick = new EventEmitter<SpotifyEntityModel>();
 
   public ngOnInit(): void {
+    this.dataSource.openPage(0);
+  }
+
+  public ngOnChanges(): void {
     this.dataSource.openPage(0);
   }
 
