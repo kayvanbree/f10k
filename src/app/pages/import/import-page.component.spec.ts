@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TrackListComponent } from './track-list.component';
+import { ImportPageComponent } from './import.component';
 
-describe('TrackListComponent', () => {
-  let component: TrackListComponent;
-  let fixture: ComponentFixture<TrackListComponent>;
+describe('ImportPageComponent', () => {
+  let component: ImportPageComponent;
+  let fixture: ComponentFixture<ImportPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrackListComponent ]
+      declarations: [ ImportPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TrackListComponent);
+    fixture = TestBed.createComponent(ImportPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

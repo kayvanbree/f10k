@@ -1,7 +1,8 @@
 import {AlbumModel} from './album.model';
 import {ArtistModel} from './artist.model';
+import {SpotifyEntityModel} from './spotify-entity.model';
 
-export interface TrackModel {
+export interface TrackModel extends SpotifyEntityModel {
   album: AlbumModel;
   artists: ArtistModel[];
   available_markets: string[];
@@ -9,16 +10,11 @@ export interface TrackModel {
   duration_ms: number;
   explicit: boolean;
   external_ids: any;
-  external_urls: any;
-  href: string;
-  id: string;
   is_playable: boolean;
   linked_from: any;
   restrictions: any;
-  name: string;
   popularity: string;
   preview_url: string;
   track_number: string;
-  type: string;
-  uri: string;
+  is_local: boolean;
 }

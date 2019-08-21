@@ -15,8 +15,7 @@ export class ArtistSpotifyService {
     return this.http.get(`${this.config.apiBase}/artists/${id}`);
   }
 
-  getArtists(ids: string[], pageSize: number) {
-    const artists = ids.slice(0, Math.min(pageSize, ids.length)).join();
-    return this.http.get(`${this.config.apiBase}/artists?ids=${artists}`);
+  getArtists(ids: string[]) {
+    return this.http.get(`${this.config.apiBase}/artists?ids=${ids}`);
   }
 }

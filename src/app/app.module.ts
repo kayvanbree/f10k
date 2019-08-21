@@ -4,24 +4,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { HomeComponent } from './pages/home/home.component';
-import { RedirectComponent } from './pages/redirect/redirect.component';
+import { HomePageComponent } from './pages/home/home-page.component';
+import { RedirectPageComponent } from './pages/redirect/redirect-page.component';
 import {SpotifyAuthorizationInterceptor} from './interceptors/spotify-authorization-interceptor';
 import { PlaylistsComponent } from './components/playlists/playlists.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import {NgxsModule} from '@ngxs/store';
 import {FolderState} from './store/states/folder.state';
-import { ArtistsComponent } from './pages/artists/artists.component';
+import { ArtistsPageComponent } from './pages/artists/artists-page.component';
 import {ArtistState} from './store/states/artist.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {FormsModule} from '@angular/forms';
 import {SearchState} from './store/states/search.state';
-import { ArtistListComponent } from './components/artist-list/artist-list.component';
-import {ArtistDetailComponent} from './pages/artist-detail/artist-detail.component';
+import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-page.component';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
-import { TrackListComponent } from './components/track-list/track-list.component';
 import {AlbumSpotifyService} from './store/providers/album-spotify.service';
 import {ArtistSpotifyService} from './store/providers/artist-spotify.service';
 import {PlaylistSpotifyService} from './store/providers/playlist-spotify.service';
@@ -30,10 +28,10 @@ import {SearchSpotifyService} from './store/providers/search-spotify.service';
 import {TrackSpotifyService} from './store/providers/track-spotify.service';
 import { TrackSaveButtonComponent } from './components/track-save-button/track-save-button.component';
 import {TrackState} from './store/states/track.state';
-import { TracksComponent } from './pages/tracks/tracks.component';
+import { TracksPageComponent } from './pages/tracks/tracks-page.component';
 import {PlayerState} from './store/states/player.state';
 import { PlayerComponent } from './components/player/player.component';
-import { ImportComponent } from './pages/import/import.component';
+import { ImportPageComponent } from './pages/import/import-page.component';
 import {environment} from '../environments/environment';
 import {MaterialImportModule} from './modules/material-import.module';
 import {SearchPageComponent} from './pages/search/search-page.component';
@@ -44,6 +42,10 @@ import {MinutesSecondsPipe} from './pipes/minutes-seconds.pipe';
 import { VolumeControlComponent } from './components/volume-control/volume-control.component';
 import { PlayerTrackInfoComponent } from './components/player-track-info/player-track-info.component';
 import {AuthenticationState} from './store/states/authentication.state';
+import { EntityListComponent } from './components/entity-list/entity-list.component';
+import { AlbumsPageComponent } from './pages/album-page/albums-page.component';
+import {AlbumState} from './store/states/album.state';
+import { AlbumSaveButtonComponent } from './components/album-save-button/album-save-button.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -87,26 +89,27 @@ export function serialize(value: any) {
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HomeComponent,
-    RedirectComponent,
+    HomePageComponent,
+    RedirectPageComponent,
     PlaylistsComponent,
     NavigationComponent,
-    ArtistsComponent,
+    ArtistsPageComponent,
     SearchPageComponent,
-    ArtistListComponent,
-    ArtistDetailComponent,
+    ArtistDetailPageComponent,
     ArtistSaveButtonComponent,
-    TrackListComponent,
     TrackSaveButtonComponent,
-    TracksComponent,
+    TracksPageComponent,
     PlayerComponent,
-    ImportComponent,
+    ImportPageComponent,
     SearchComponent,
     PositionSliderComponent,
     PlaybackControlsComponent,
     MinutesSecondsPipe,
     VolumeControlComponent,
     PlayerTrackInfoComponent,
+    EntityListComponent,
+    AlbumsPageComponent,
+    AlbumSaveButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,6 +122,7 @@ export function serialize(value: any) {
       TrackState,
       PlayerState,
       AuthenticationState,
+      AlbumState,
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({

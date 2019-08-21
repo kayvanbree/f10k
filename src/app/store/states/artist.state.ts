@@ -1,4 +1,4 @@
-import {Action, createSelector, State, StateContext} from '@ngxs/store';
+import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store';
 import {ArtistStateModel} from '../models/artist-state.model';
 import {GetArtist, GetArtists, GetArtistsSuccess, GetArtistSuccess, RemoveArtist, SaveArtist} from '../actions/artist.actions';
 import {append, patch, removeItem} from '@ngxs/store/operators';
@@ -22,11 +22,19 @@ export class ArtistState {
     });
   }
 
+  @Selector()
+  static artists(state: ArtistStateModel) {
+    return state.artists;
+  }
+
   constructor(private artistService: ArtistSpotifyService) {}
 
   @Action(GetArtists)
   public getArtists(ctx: StateContext<ArtistStateModel>, action: GetArtists) {
-    this.artistService.getArtists(action.ids, action.pageSize).subscribe((value: any) => {
+    const start = action.page * action.pageSize;
+    const end = start + action.pageSize;
+    const pageIds = action.ids.slice(start, end);
+    this.artistService.getArtists(pageIds).subscribe((value: any) => {
       ctx.dispatch(new GetArtistsSuccess(value.artists));
     });
   }

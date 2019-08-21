@@ -1,7 +1,7 @@
 <ng-container *ngIf="artist">
   <div
     class="background-image"
-    [ngStyle]="{'background-image': 'url(' + artist.images[0].url + ')'}"
+    [ngStyle]="{'background-image': artist.images && artist.images[0] ? 'url(' + artist.images[0].url + ')' : ''}"
   >
     <div class="background-gradient"></div>
   </div>

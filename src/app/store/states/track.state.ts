@@ -1,4 +1,4 @@
-import {Action, createSelector, State, StateContext} from '@ngxs/store';
+import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store';
 import {TrackStateModel} from '../models/track-state.model';
 import {TrackSpotifyService} from '../providers/track-spotify.service';
 import {append, patch, removeItem} from '@ngxs/store/operators';
@@ -28,11 +28,19 @@ export class TrackState {
     });
   }
 
+  @Selector()
+  static tracks(state: TrackStateModel) {
+    return state.tracks;
+  }
+
   constructor(private trackService: TrackSpotifyService) {}
 
   @Action(GetTracks)
   public getTracks(ctx: StateContext<TrackStateModel>, action: GetTracks) {
-    this.trackService.getTracks(action.ids, action.pageSize).subscribe((value: any) => {
+    const start = action.page * action.pageSize;
+    const end = start + action.pageSize;
+    const pageIds = action.ids.slice(start, end);
+    this.trackService.getTracks(pageIds, action.pageSize).subscribe((value: any) => {
       ctx.dispatch(new GetTracksSuccess(value.tracks));
     });
   }

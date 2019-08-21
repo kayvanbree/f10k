@@ -1,0 +1,9 @@
+<app-entity-list
+  [pageSize]="50"
+  [page]="0"
+  [columns]="['album-image', 'artist', 'name', 'popularity','duration','track-saved']"
+  [selector]="selector"
+  [total]="ids.length"
+  (loadRequest)="onLoadRequest($event)"
+  (rowDoubleClick)="onRowDoubleClick($event)"
+></app-entity-list>

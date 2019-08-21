@@ -27,8 +27,7 @@ import {
   }
 })
 export class PlayerState {
-  constructor(private playerService: PlayerSpotifyService) {
-  }
+  constructor(private playerService: PlayerSpotifyService) {}
 
   @Action(PlayTrack)
   public playTrack(ctx: StateContext<PlayerStateModel>, action: PlayTrack) {

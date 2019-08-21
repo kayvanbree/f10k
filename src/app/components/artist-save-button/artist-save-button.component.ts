@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {ArtistState} from '../../store/states/artist.state';
 import {RemoveArtist, SaveArtist} from '../../store/actions/artist.actions';

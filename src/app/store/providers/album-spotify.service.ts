@@ -11,11 +11,11 @@ export class AlbumSpotifyService {
     private http: HttpClient
   ) { }
 
-  getAlbums() {
-    return this.http.get(`${this.config.apiBase}/albums`);
+  getAlbums(ids: string[]) {
+    return this.http.get(`${this.config.apiBase}/albums?ids=${ids}`);
   }
 
-  getAlbum(album: string) {
-    return this.http.get(`${this.config.apiBase}/albums/${album}`);
+  getAlbum(id: string) {
+    return this.http.get(`${this.config.apiBase}/albums/${id}`);
   }
 }

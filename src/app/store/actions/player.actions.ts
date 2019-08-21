@@ -2,7 +2,9 @@ import {TrackModel} from '../models/track.model';
 
 export class PlayTrack {
   static readonly type = '[Player] PlayTrack';
-  constructor(public ids: string[], public id: string) {
+  constructor(
+    public ids: string[],
+    public id: string) {
   }
 }
 

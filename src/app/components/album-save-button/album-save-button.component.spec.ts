@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RedirectComponent } from './redirect.component';
+import { AlbumSaveButtonComponent } from './album-save-button.component';
 
-describe('RedirectComponent', () => {
-  let component: RedirectComponent;
-  let fixture: ComponentFixture<RedirectComponent>;
+describe('AlbumSaveButtonComponent', () => {
+  let component: AlbumSaveButtonComponent;
+  let fixture: ComponentFixture<AlbumSaveButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedirectComponent ]
+      declarations: [ AlbumSaveButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RedirectComponent);
+    fixture = TestBed.createComponent(AlbumSaveButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

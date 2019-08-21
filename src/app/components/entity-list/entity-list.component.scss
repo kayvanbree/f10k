@@ -4,9 +4,14 @@
   height: 100%;
 }
 
+.playing {
+  background: rgba(255, 255, 255, 0.13);
+}
+
 .list-container {
   flex: 1;
   overflow: auto;
+
   border-bottom: 1px rgba(255,255,255,.12) solid;
   box-sizing: content-box;
 }
@@ -19,17 +24,22 @@
   }
 
   td {
-    &.mat-column-image {
+    &.mat-column-image,
+    &.mat-column-album-image {
       width: 32px;
     }
-    &.mat-column-popularity {
-      width: 20px;
 
+    &.mat-column-popularity {
       .progress-bar {
         width: 100%;
       }
     }
-    &.mat-column-saved {
+
+    &.mat-column-track-saved,
+    &.mat-column-artist-saved,
+    &.mat-column-duration,
+    &.mat-column-popularity,
+    &.mat-column-album-saved {
       width: 40px;
     }
   }
