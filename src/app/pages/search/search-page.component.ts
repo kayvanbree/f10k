@@ -24,6 +24,10 @@ export class SearchPageComponent implements OnInit {
   public albumTotal: number;
   public albumSelector = SearchState.albums;
 
+  public playlistIds: string[];
+  public playlistTotal: number;
+  public playlistSelector = SearchState.playlists;
+
   public pageSize = 10;
 
   private query: string;
@@ -62,6 +66,11 @@ export class SearchPageComponent implements OnInit {
           this.albumIds = value.albums.items.map(x => x.id);
           this.albumTotal = value.albums.total;
         }
+
+        if (value.playlists) {
+          this.playlistIds = value.playlists.items.map(x => x.id);
+          this.playlistTotal = value.playlists.total;
+        }
       }
     });
   }
@@ -83,5 +92,9 @@ export class SearchPageComponent implements OnInit {
 
   public onAlbumDoubleClick(event) {
     this.router.navigate(['album', event.id]);
+  }
+
+  public onPlaylistDoubleClick(event) {
+    this.router.navigate(['playlist', event.id]);
   }
 }

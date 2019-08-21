@@ -1,37 +1,55 @@
-<h1>Tracks ({{trackTotal}})</h1>
-<app-entity-list
-  class="item-list"
-  [pageSize]="pageSize"
-  [page]="0"
-  [columns]="['album-image', 'artist', 'name', 'popularity', 'duration', 'track-saved']"
-  [selector]="tracksSelector"
-  [total]="trackTotal"
-  (loadRequest)="onLoadRequest($event, 'track')"
-  (rowDoubleClick)="onTrackDoubleClick($event)"
-></app-entity-list>
+<ng-container *ngIf="trackTotal > 0">
+  <h1>Tracks ({{trackTotal}})</h1>
+  <app-entity-list
+    class="item-list"
+    [pageSize]="pageSize"
+    [page]="0"
+    [columns]="['album-image', 'artist', 'name', 'popularity', 'duration', 'track-saved']"
+    [selector]="tracksSelector"
+    [total]="trackTotal"
+    (loadRequest)="onLoadRequest($event, 'track')"
+    (rowDoubleClick)="onTrackDoubleClick($event)"
+  ></app-entity-list>
+</ng-container>
 
-<h1>Artists ({{artistTotal}})</h1>
-<app-entity-list
-  class="item-list"
-  [pageSize]="pageSize"
-  [page]="0"
-  [columns]="['image', 'name', 'popularity', 'artist-saved']"
-  [selector]="artistSelector"
-  [total]="artistTotal"
-  (loadRequest)="onLoadRequest($event, 'artist')"
-  (rowDoubleClick)="onArtistDoubleClick($event)"
-></app-entity-list>
+<ng-container *ngIf="artistTotal > 0">
+  <h1>Artists ({{artistTotal}})</h1>
+  <app-entity-list
+    class="item-list"
+    [pageSize]="pageSize"
+    [page]="0"
+    [columns]="['image', 'name', 'popularity', 'artist-saved']"
+    [selector]="artistSelector"
+    [total]="artistTotal"
+    (loadRequest)="onLoadRequest($event, 'artist')"
+    (rowDoubleClick)="onArtistDoubleClick($event)"
+  ></app-entity-list>
+</ng-container>
 
-<h1>Albums (0)</h1>
-<app-entity-list
-  class="item-list"
-  [pageSize]="pageSize"
-  [page]="0"
-  [columns]="['image', 'artist', 'name', 'popularity']"
-  [selector]="albumSelector"
-  [total]="albumTotal"
-  (loadRequest)="onLoadRequest($event, 'album')"
-  (rowDoubleClick)="onAlbumDoubleClick($event)"
-></app-entity-list>
+<ng-container *ngIf="albumTotal > 0">
+  <h1>Albums ({{albumTotal}})</h1>
+  <app-entity-list
+    class="item-list"
+    [pageSize]="pageSize"
+    [page]="0"
+    [columns]="['image', 'artist', 'name', 'popularity']"
+    [selector]="albumSelector"
+    [total]="albumTotal"
+    (loadRequest)="onLoadRequest($event, 'album')"
+    (rowDoubleClick)="onAlbumDoubleClick($event)"
+  ></app-entity-list>
+</ng-container>
 
-<h1>Playlists (0)</h1>
+<ng-container *ngIf="playlistTotal > 0">
+  <h1>Playlists ({{playlistTotal}})</h1>
+  <app-entity-list
+    class="item-list"
+    [pageSize]="pageSize"
+    [page]="0"
+    [columns]="['image', 'name']"
+    [selector]="playlistSelector"
+    [total]="playlistTotal"
+    (loadRequest)="onLoadRequest($event, 'playlist')"
+    (rowDoubleClick)="onPlaylistDoubleClick($event)"
+  ></app-entity-list>
+</ng-container>

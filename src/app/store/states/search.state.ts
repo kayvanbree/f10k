@@ -20,9 +20,15 @@ export class SearchState {
   static artists(state: SearchStateModel) {
     return state.results.artists.items;
   }
+
   @Selector()
   static albums(state: SearchStateModel) {
     return state.results.albums.items;
+  }
+
+  @Selector()
+  static playlists(state: SearchStateModel) {
+    return state.results.playlists.items;
   }
 
   constructor(private searchService: SearchSpotifyService) {}
