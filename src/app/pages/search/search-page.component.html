@@ -23,5 +23,15 @@
 ></app-entity-list>
 
 <h1>Albums (0)</h1>
+<app-entity-list
+  class="item-list"
+  [pageSize]="pageSize"
+  [page]="0"
+  [columns]="['image', 'artist', 'name', 'popularity']"
+  [selector]="albumSelector"
+  [total]="albumTotal"
+  (loadRequest)="onLoadRequest($event, 'album')"
+  (rowDoubleClick)="onAlbumDoubleClick($event)"
+></app-entity-list>
 
 <h1>Playlists (0)</h1>

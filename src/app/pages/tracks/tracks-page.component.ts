@@ -7,11 +7,11 @@ import {PlayTrack} from '../../store/actions/player.actions';
 import {TrackState} from '../../store/states/track.state';
 
 @Component({
-  selector: 'app-tracks',
-  templateUrl: './tracks.component.html',
-  styleUrls: ['./tracks.component.scss']
+  selector: 'app-tracks-page',
+  templateUrl: './tracks-page.component.html',
+  styleUrls: ['./tracks-page.component.scss']
 })
-export class TracksComponent implements OnInit {
+export class TracksPageComponent implements OnInit {
   public ids: string[];
   public pageSize = 50;
   public selector = TrackState.tracks;

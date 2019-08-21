@@ -3,11 +3,11 @@ import {ImportTracks, ImportPlaylists} from '../../store/actions/track.actions';
 import {Store} from '@ngxs/store';
 
 @Component({
-  selector: 'app-import',
-  templateUrl: './import.component.html',
-  styleUrls: ['./import.component.scss']
+  selector: 'app-import-page',
+  templateUrl: './import-page.component.html',
+  styleUrls: ['./import-page.component.scss']
 })
-export class ImportComponent {
+export class ImportPageComponent {
   constructor(private store: Store) { }
 
   startImport() {

@@ -20,6 +20,10 @@ export class SearchState {
   static artists(state: SearchStateModel) {
     return state.results.artists.items;
   }
+  @Selector()
+  static albums(state: SearchStateModel) {
+    return state.results.albums.items;
+  }
 
   constructor(private searchService: SearchSpotifyService) {}
 
@@ -44,6 +48,8 @@ export class SearchState {
         ...state.results,
         tracks: action.results.tracks ? action.results.tracks : state.results.tracks,
         artists: action.results.artists ? action.results.artists : state.results.artists,
+        albums: action.results.albums ? action.results.albums : state.results.albums,
+        playlists: action.results.playlists ? action.results.playlists : state.results.playlists,
       },
     });
   }

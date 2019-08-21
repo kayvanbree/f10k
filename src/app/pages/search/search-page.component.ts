@@ -20,6 +20,10 @@ export class SearchPageComponent implements OnInit {
   public artistTotal: number;
   public artistSelector = SearchState.artists;
 
+  public albumIds: string[];
+  public albumTotal: number;
+  public albumSelector = SearchState.albums;
+
   public pageSize = 10;
 
   private query: string;
@@ -53,6 +57,11 @@ export class SearchPageComponent implements OnInit {
           this.artistIds = value.artists.items.map(x => x.id);
           this.artistTotal = value.artists.total;
         }
+
+        if (value.albums) {
+          this.albumIds = value.albums.items.map(x => x.id);
+          this.albumTotal = value.albums.total;
+        }
       }
     });
   }
@@ -70,5 +79,9 @@ export class SearchPageComponent implements OnInit {
 
   public onArtistDoubleClick(event) {
     this.router.navigate(['artist', event.id]);
+  }
+
+  public onAlbumDoubleClick(event) {
+    this.router.navigate(['album', event.id]);
   }
 }

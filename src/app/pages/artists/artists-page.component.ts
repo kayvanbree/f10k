@@ -7,11 +7,11 @@ import {GetArtists} from '../../store/actions/artist.actions';
 import {ArtistState} from '../../store/states/artist.state';
 
 @Component({
-  selector: 'app-artists',
-  templateUrl: './artists.component.html',
-  styleUrls: ['./artists.component.scss']
+  selector: 'app-artists-page',
+  templateUrl: './artists-page.component.html',
+  styleUrls: ['./artists-page.component.scss']
 })
-export class ArtistsComponent implements OnInit {
+export class ArtistsPageComponent implements OnInit {
   public ids: string[];
   public pageSize = 50;
   public selector = ArtistState.artists;

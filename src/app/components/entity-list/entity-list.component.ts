@@ -87,9 +87,11 @@ export class EntityListComponent implements OnInit {
    * Emit the event to request entity loading.
    */
   private requestLoad(): void {
-    this.loadRequest.emit({
-      page: this.page,
-      pageSize: this.pageSize,
-    });
+    if (this.total > 0) {
+      this.loadRequest.emit({
+        page: this.page,
+        pageSize: this.pageSize,
+      });
+    }
   }
 }

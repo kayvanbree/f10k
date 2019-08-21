@@ -9,6 +9,7 @@ export class NavigationComponent {
   menuItems = [
     { routerLink: '/home', tooltip: 'Home', icon: 'home' },
     { routerLink: '/artists', tooltip: 'Artists', icon: 'people' },
+    { routerLink: '/albums', tooltip: 'Albums', icon: 'list' },
     { routerLink: '/tracks', tooltip: 'Tracks', icon: 'audiotrack' },
     { routerLink: '/import', tooltip: 'Import', icon: 'import_export' },
   ] ;
