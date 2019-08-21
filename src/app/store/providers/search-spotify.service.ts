@@ -12,7 +12,8 @@ export class SearchSpotifyService {
     private http: HttpClient
   ) { }
 
-  search(query: string, limit: number, offset: number, type: string[]): Observable<any> {
-    return this.http.get(`${this.config.apiBase}/search?q=${query}&type=${type}&market=from_token&limit=${limit}&offset=${offset}`);
+  search(query: string, pageSize: number, page: number, type: string[]): Observable<any> {
+    const offset = page * pageSize;
+    return this.http.get(`${this.config.apiBase}/search?q=${query}&type=${type}&market=from_token&limit=${pageSize}&offset=${offset}`);
   }
 }

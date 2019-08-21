@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '@ngxs/store';
-import {Search} from '../../store/actions/search.actions';
-import {SearchState} from '../../store/states/search.state';
-import {LoadRequestEvent} from '../../components/entity-list/entity-list.component';
 import {PlayTrack} from '../../store/actions/player.actions';
+import {SearchSpotifyService} from '../../store/providers/search-spotify.service';
+import {SearchDataSource} from '../../datasources/search-data-source';
 
 @Component({
   selector: 'app-search-page',
@@ -12,75 +11,33 @@ import {PlayTrack} from '../../store/actions/player.actions';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  public trackIds: string[];
-  public trackTotal: number;
-  public tracksSelector = SearchState.tracks;
-
-  public artistIds: string[];
-  public artistTotal: number;
-  public artistSelector = SearchState.artists;
-
-  public albumIds: string[];
-  public albumTotal: number;
-  public albumSelector = SearchState.albums;
-
-  public playlistIds: string[];
-  public playlistTotal: number;
-  public playlistSelector = SearchState.playlists;
+  @Input() public trackDataSource: SearchDataSource;
+  @Input() public artistDataSource: SearchDataSource;
+  @Input() public albumDataSource: SearchDataSource;
+  @Input() public playlistDataSource: SearchDataSource;
 
   public pageSize = 50;
-
-  private query: string;
 
   constructor(
     private route: ActivatedRoute,
     private store: Store,
     private router: Router,
-  ) {
-  }
+    private searchService: SearchSpotifyService,
+    private changeDetector: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((value) => {
-      this.query = value.query;
-      this.store.dispatch(new Search(this.query, this.pageSize, 0, [
-        'album',
-        'artist',
-        'track',
-        'playlist',
-      ]));
+      this.trackDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'track');
+      this.artistDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'artist');
+      this.albumDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'album');
+      this.playlistDataSource = new SearchDataSource(this.searchService, value.query, this.pageSize, 'playlist');
+      this.changeDetector.detectChanges();
     });
-
-    this.store.select(state => state.search.results).subscribe((value) => {
-      if (value) {
-        if (value.tracks) {
-          this.trackIds = value.tracks.items.map(x => x.id);
-          this.trackTotal = value.tracks.total;
-        }
-
-        if (value.artists) {
-          this.artistIds = value.artists.items.map(x => x.id);
-          this.artistTotal = value.artists.total;
-        }
-
-        if (value.albums) {
-          this.albumIds = value.albums.items.map(x => x.id);
-          this.albumTotal = value.albums.total;
-        }
-
-        if (value.playlists) {
-          this.playlistIds = value.playlists.items.map(x => x.id);
-          this.playlistTotal = value.playlists.total;
-        }
-      }
-    });
-  }
-
-  public onLoadRequest(event: LoadRequestEvent, type: string) {
-    this.store.dispatch(new Search(this.query, event.pageSize, event.page, [type]));
   }
 
   public onTrackDoubleClick(event) {
-    this.store.dispatch(new PlayTrack(this.trackIds, event.id));
+    this.store.dispatch(new PlayTrack(this.trackDataSource.entities.map(x => x.id), event.id));
   }
 
   public onArtistDoubleClick(event) {

@@ -16,7 +16,7 @@ export class TrackDataSource extends PagedDataSource<TrackModel> {
     public pageSize: number,
   ) {
     super();
-    this.total = ids.length;
+    this.total = ids.length > 0 ? ids.length : 0;
   }
 
   connect(collectionViewer: CollectionViewer): Observable<TrackModel[] | ReadonlyArray<TrackModel>> {

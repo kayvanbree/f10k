@@ -1,53 +1,37 @@
 <mat-tab-group class="search-tabs">
-  <mat-tab *ngIf="trackTotal > 0" [label]="'Tracks (' + trackTotal + ')'">
-    <app-entity-list
+  <mat-tab [disabled]="trackDataSource.total === 0" [label]="'Tracks (' + trackDataSource.total + ')'">
+    <app-virtual-scroll-list
       class="item-list"
-      [pageSize]="pageSize"
-      [page]="0"
+      [dataSource]="trackDataSource"
       [columns]="['album-image', 'name', 'artist', 'album', 'popularity', 'duration', 'track-saved']"
-      [selector]="tracksSelector"
-      [total]="trackTotal"
-      (loadRequest)="onLoadRequest($event, 'track')"
       (rowDoubleClick)="onTrackDoubleClick($event)"
-    ></app-entity-list>
+    ></app-virtual-scroll-list>
   </mat-tab>
 
-  <mat-tab *ngIf="artistTotal > 0" [label]="'Artists (' + artistTotal + ')'">
-    <app-entity-list
+  <mat-tab [disabled]="artistDataSource.total === 0" [label]="'Artists (' + artistDataSource.total + ')'">
+    <app-virtual-scroll-list
       class="item-list"
-      [pageSize]="pageSize"
-      [page]="0"
+      [dataSource]="artistDataSource"
       [columns]="['image', 'name', 'popularity', 'artist-saved']"
-      [selector]="artistSelector"
-      [total]="artistTotal"
-      (loadRequest)="onLoadRequest($event, 'artist')"
       (rowDoubleClick)="onArtistDoubleClick($event)"
-    ></app-entity-list>
+    ></app-virtual-scroll-list>
   </mat-tab>
 
-  <mat-tab *ngIf="albumTotal > 0" [label]="'Albums (' + albumTotal + ')'">
-    <app-entity-list
+  <mat-tab [disabled]="albumDataSource.total === 0" [label]="'Albums (' + albumDataSource.total + ')'">
+    <app-virtual-scroll-list
       class="item-list"
-      [pageSize]="pageSize"
-      [page]="0"
+      [dataSource]="albumDataSource"
       [columns]="['image', 'name', 'artist', 'popularity', 'album-saved']"
-      [selector]="albumSelector"
-      [total]="albumTotal"
-      (loadRequest)="onLoadRequest($event, 'album')"
       (rowDoubleClick)="onAlbumDoubleClick($event)"
-    ></app-entity-list>
+    ></app-virtual-scroll-list>
   </mat-tab>
 
-  <mat-tab *ngIf="playlistTotal > 0" [label]="'Playlists (' + playlistTotal + ')'">
-    <app-entity-list
+  <mat-tab [disabled]="playlistDataSource.total === 0" [label]="'Playlists (' + playlistDataSource.total + ')'">
+    <app-virtual-scroll-list
       class="item-list"
-      [pageSize]="pageSize"
-      [page]="0"
+      [dataSource]="playlistDataSource"
       [columns]="['image', 'name']"
-      [selector]="playlistSelector"
-      [total]="playlistTotal"
-      (loadRequest)="onLoadRequest($event, 'playlist')"
       (rowDoubleClick)="onPlaylistDoubleClick($event)"
-    ></app-entity-list>
+    ></app-virtual-scroll-list>
   </mat-tab>
 </mat-tab-group>

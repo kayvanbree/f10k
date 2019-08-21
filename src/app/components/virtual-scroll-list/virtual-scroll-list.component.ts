@@ -35,11 +35,9 @@ export class VirtualScrollListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.dataSource.openPage(0);
-    console.log('Opened page 0');
   }
 
   public onPageChange(event): void {
-    console.log(event);
     this.dataSource.openPage(event.pageIndex);
   }
 
