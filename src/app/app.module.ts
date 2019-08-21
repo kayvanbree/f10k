@@ -45,6 +45,7 @@ import {AuthenticationState} from './store/states/authentication.state';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { AlbumsPageComponent } from './pages/album-page/albums-page.component';
 import {AlbumState} from './store/states/album.state';
+import { AlbumSaveButtonComponent } from './components/album-save-button/album-save-button.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -108,6 +109,7 @@ export function serialize(value: any) {
     PlayerTrackInfoComponent,
     EntityListComponent,
     AlbumsPageComponent,
+    AlbumSaveButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,7 @@
     class="item-list"
     [pageSize]="pageSize"
     [page]="0"
-    [columns]="['image', 'artist', 'name', 'popularity']"
+    [columns]="['image', 'artist', 'name', 'popularity', 'album-saved']"
     [selector]="albumSelector"
     [total]="albumTotal"
     (loadRequest)="onLoadRequest($event, 'album')"
