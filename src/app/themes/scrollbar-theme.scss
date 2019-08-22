@@ -1,0 +1,26 @@
+@mixin scrollbar-theme($theme) {
+  $background: map-get($theme, background);
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px 0 mat-color($background, app-bar);
+    -moz-box-shadow: inset 0 0 6px 0 mat-color($background, app-bar);
+    box-shadow: inset 0 0 6px 0 mat-color($background, app-bar);
+    border-radius: 3px;
+    background: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: mat-color($background, app-bar);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px 0 mat-color($background, card);
+    -moz-box-shadow: inset 0 0 6px 0 mat-color($background, card);
+    box-shadow: inset 0 0 6px 0 mat-color($background, card);
+    border-radius: 10px;
+    background: mat-color($background, card);
+  }
+}
+
+@include scrollbar-theme($f10k-dark);

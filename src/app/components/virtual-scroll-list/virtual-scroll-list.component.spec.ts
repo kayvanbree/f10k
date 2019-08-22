@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntityListComponent } from './entity-list.component';
+import { VirtualScrollListComponent } from './virtual-scroll-list.component';
 
-describe('EntityListComponent', () => {
-  let component: EntityListComponent;
-  let fixture: ComponentFixture<EntityListComponent>;
+describe('VirtualScrollListComponent', () => {
+  let component: VirtualScrollListComponent;
+  let fixture: ComponentFixture<VirtualScrollListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntityListComponent ]
+      declarations: [ VirtualScrollListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EntityListComponent);
+    fixture = TestBed.createComponent(VirtualScrollListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ArtistSpotifyService } from './artist-spotify.service';
+import { SpotifyEntityService } from './spotify-entity.service';
 
-describe('ArtistSpotifyService', () => {
+describe('SpotifyEntityService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ArtistSpotifyService = TestBed.get(ArtistSpotifyService);
+    const service: SpotifyEntityService = TestBed.get(SpotifyEntityService);
     expect(service).toBeTruthy();
   });
 });

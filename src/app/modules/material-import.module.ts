@@ -13,6 +13,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 const modules = [
   CommonModule,
@@ -29,6 +30,7 @@ const modules = [
   FormsModule,
   MatSliderModule,
   MatTabsModule,
+  ScrollingModule,
 ];
 
 @NgModule({

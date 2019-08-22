@@ -20,16 +20,13 @@
   <div class="album-label"><h2>Albums</h2></div>
 
   <div class="flex">
-    <app-entity-list
+    <app-virtual-scroll-list
       class="album-list"
-      [page]="0"
-      [pageSize]="pageSize"
+      *ngIf="albumDataSource"
+      [dataSource]="albumDataSource"
       [columns]="['image', 'name', 'popularity', 'album-saved']"
-      [selector]="albumsSelector"
-      [total]="total"
-      (loadRequest)="onLoadRequest($event)"
       (rowDoubleClick)="onRowDoubleClick($event)"
-    ></app-entity-list>
+    ></app-virtual-scroll-list>
   </div>
 </div>
 
