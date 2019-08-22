@@ -15,12 +15,10 @@ import { ArtistsPageComponent } from './pages/artists/artists-page.component';
 import {ArtistState} from './store/states/artist.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {FormsModule} from '@angular/forms';
-import {SearchState} from './store/states/search.state';
 import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-page.component';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
-import {ArtistSpotifyService} from './store/providers/artist-spotify.service';
 import {PlaylistSpotifyService} from './store/providers/playlist-spotify.service';
 import {ProfileSpotifyService} from './store/providers/profile-spotify.service';
 import {SearchSpotifyService} from './store/providers/search-spotify.service';
@@ -123,7 +121,6 @@ export function serialize(value: any) {
     NgxsModule.forRoot([
       FolderState,
       ArtistState,
-      SearchState,
       TrackState,
       PlayerState,
       AuthenticationState,
@@ -144,7 +141,6 @@ export function serialize(value: any) {
       useClass: SpotifyAuthorizationInterceptor,
       multi: true
     },
-    ArtistSpotifyService,
     PlaylistSpotifyService,
     ProfileSpotifyService,
     SearchSpotifyService,

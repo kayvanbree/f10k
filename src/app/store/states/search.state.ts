@@ -1,6 +1,5 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {SearchStateModel} from '../models/search-state.model';
-import {Search, SearchSuccess} from '../actions/search.actions';
 import {SearchSpotifyService} from '../providers/search-spotify.service';
 
 @State<SearchStateModel>({
