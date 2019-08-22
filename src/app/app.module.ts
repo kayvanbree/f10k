@@ -20,7 +20,6 @@ import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-pag
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
-import {AlbumSpotifyService} from './store/providers/album-spotify.service';
 import {ArtistSpotifyService} from './store/providers/artist-spotify.service';
 import {PlaylistSpotifyService} from './store/providers/playlist-spotify.service';
 import {ProfileSpotifyService} from './store/providers/profile-spotify.service';
@@ -145,7 +144,6 @@ export function serialize(value: any) {
       useClass: SpotifyAuthorizationInterceptor,
       multi: true
     },
-    AlbumSpotifyService,
     ArtistSpotifyService,
     PlaylistSpotifyService,
     ProfileSpotifyService,
