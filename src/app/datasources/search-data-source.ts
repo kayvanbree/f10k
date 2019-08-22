@@ -20,19 +20,23 @@ export class SearchDataSource extends PagedDataSource<TrackModel> {
     this.total = 0;
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<TrackModel[] | ReadonlyArray<TrackModel>> {
+  public connect(collectionViewer: CollectionViewer): Observable<TrackModel[] | ReadonlyArray<TrackModel>> {
     return this.observable;
   }
 
-  disconnect(collectionViewer: CollectionViewer): void {
+  public disconnect(collectionViewer: CollectionViewer): void {
     this.subject.complete();
   }
 
-  openPage(page): void {
+  public openPage(page): void {
     this.searchService.search(this.query, this.pageSize, page, [this.type]).subscribe((value: any) => {
       this.entities = value[this.type + 's'].items;
       this.total = value[this.type + 's'].total;
       this.subject.next(this.entities);
     });
+  }
+
+  public getIds(): string[] {
+    return this.entities.map(x => x.id);
   }
 }

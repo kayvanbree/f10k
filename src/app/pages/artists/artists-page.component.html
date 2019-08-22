@@ -1,9 +1,5 @@
-<app-entity-list
-  [pageSize]="50"
-  [page]="0"
+<app-virtual-scroll-list
+  [dataSource]="dataSource"
   [columns]="['image', 'name', 'popularity', 'artist-saved']"
-  [selector]="selector"
-  [total]="ids.length"
-  (loadRequest)="onLoadRequest($event)"
   (rowDoubleClick)="onRowDoubleClick($event)"
-></app-entity-list>
+></app-virtual-scroll-list>

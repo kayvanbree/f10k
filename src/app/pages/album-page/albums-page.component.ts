@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngxs/store';
 import {Router} from '@angular/router';
-import {AlbumState} from '../../store/states/album.state';
-import {LoadRequestEvent} from '../../components/entity-list/entity-list.component';
-import {GetAlbums} from '../../store/actions/album.actions';
 import {AlbumModel} from '../../store/models/album.model';
 import {EntityDataSource} from '../../datasources/entity-data-source';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';

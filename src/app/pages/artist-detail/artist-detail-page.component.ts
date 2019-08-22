@@ -3,7 +3,6 @@ import {Store} from '@ngxs/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArtistModel} from '../../store/models/artist.model';
 import {AlbumModel} from '../../store/models/album.model';
-import {EntityDataSource} from '../../datasources/entity-data-source';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';
 import {NestedEntityDataSource} from '../../datasources/nested-entity-data-source';
 

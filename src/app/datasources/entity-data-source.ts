@@ -38,4 +38,8 @@ export class EntityDataSource extends PagedDataSource<SpotifyEntityModel> {
       this.subject.next(this.entities);
     });
   }
+
+  public getIds(): string[] {
+    return this.ids;
+  }
 }

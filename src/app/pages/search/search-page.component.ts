@@ -35,7 +35,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   public onTrackDoubleClick(event) {
-    this.store.dispatch(new PlayTrack(this.trackDataSource.entities.map(x => x.id), event.id));
+    this.store.dispatch(new PlayTrack(event.context, event.id));
   }
 
   public onArtistDoubleClick(event) {

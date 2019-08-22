@@ -12,9 +12,7 @@ import {SpotifyEntityService} from '../../store/providers/spotify-entity.service
   styleUrls: ['./tracks-page.component.scss']
 })
 export class TracksPageComponent implements OnInit {
-  public ids: string[];
   public pageSize = 50;
-  public selector = TrackState.tracks;
   public dataSource: EntityDataSource;
 
   constructor(
@@ -30,7 +28,7 @@ export class TracksPageComponent implements OnInit {
     });
   }
 
-  public onRowDoubleClick(event: TrackModel): void {
-    this.store.dispatch(new PlayTrack(this.ids, event.id));
+  public onRowDoubleClick(event): void {
+    this.store.dispatch(new PlayTrack(event.context, event.id));
   }
 }

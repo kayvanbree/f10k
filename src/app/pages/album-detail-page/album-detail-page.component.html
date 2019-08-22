@@ -19,16 +19,13 @@
   </div>
 
   <div class="flex">
-    <app-entity-list
+    <app-virtual-scroll-list
       class="track-list"
-      [page]="0"
-      [pageSize]="pageSize"
+      *ngIf="trackDataSource"
+      [dataSource]="trackDataSource"
       [columns]="['name', 'popularity','duration','track-saved']"
-      [selector]="selector"
-      [total]="trackIds.length"
-      (loadRequest)="onLoadRequest($event)"
       (rowDoubleClick)="onRowDoubleClick($event)"
-    ></app-entity-list>
+    ></app-virtual-scroll-list>
   </div>
 </div>
 

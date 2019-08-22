@@ -29,9 +29,12 @@ export class VirtualScrollListComponent implements OnInit, OnChanges {
   @Input() public columns: string[] = ['name'];
 
   /**
-   * Emits an event containing the row object.
+   * Emits an event containing the row object and the ids of the rest of the page
    */
-  @Output() public rowDoubleClick = new EventEmitter<SpotifyEntityModel>();
+  @Output() public rowDoubleClick = new EventEmitter<{
+    id: string,
+    context: string[]
+  }>();
 
   public ngOnInit(): void {
     this.dataSource.openPage(0);
@@ -43,6 +46,13 @@ export class VirtualScrollListComponent implements OnInit, OnChanges {
 
   public onPageChange(event): void {
     this.dataSource.openPage(event.pageIndex);
+  }
+
+  public onRowClick(event: SpotifyEntityModel) {
+    this.rowDoubleClick.emit({
+      id: event.id,
+      context: this.dataSource.getIds(),
+    });
   }
 
   public trackBy(index, item) {

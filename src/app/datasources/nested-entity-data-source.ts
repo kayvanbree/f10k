@@ -36,4 +36,8 @@ export class NestedEntityDataSource extends PagedDataSource<SpotifyEntityModel> 
       this.subject.next(this.entities);
     });
   }
+
+  public getIds(): string[] {
+    return this.entities.map(x => x.id);
+  }
 }
