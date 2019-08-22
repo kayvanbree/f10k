@@ -39,7 +39,6 @@ import {MinutesSecondsPipe} from './pipes/minutes-seconds.pipe';
 import { VolumeControlComponent } from './components/volume-control/volume-control.component';
 import { PlayerTrackInfoComponent } from './components/player-track-info/player-track-info.component';
 import {AuthenticationState} from './store/states/authentication.state';
-import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { AlbumsPageComponent } from './pages/album-page/albums-page.component';
 import {AlbumState} from './store/states/album.state';
 import { AlbumSaveButtonComponent } from './components/album-save-button/album-save-button.component';
@@ -107,7 +106,6 @@ export function serialize(value: any) {
     MinutesSecondsPipe,
     VolumeControlComponent,
     PlayerTrackInfoComponent,
-    EntityListComponent,
     AlbumsPageComponent,
     AlbumSaveButtonComponent,
     AlbumDetailPageComponent,
