@@ -1,19 +1,3 @@
-import {TrackModel} from '../models/track.model';
-
-export class GetTracks {
-  static readonly type = '[Track] GetTracks';
-  constructor(
-    public ids: string[],
-    public page: number,
-    public pageSize: number
-  ) {}
-}
-
-export class GetTracksSuccess {
-  static readonly type = '[Track] GetTracksSuccess';
-  constructor(public tracks: TrackModel[]) {}
-}
-
 export class SaveTrack {
   static readonly type = '[Track] SaveTrack';
   constructor(public id: string) {}

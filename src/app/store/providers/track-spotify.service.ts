@@ -11,15 +11,6 @@ export class TrackSpotifyService {
     private http: HttpClient,
   ) { }
 
-  getTrack(id: string) {
-    return this.http.get(`${this.config.apiBase}/track/${id}`);
-  }
-
-  getTracks(ids: string[], pageSize: number) {
-    const tracks = ids.slice(0, Math.min(pageSize, ids.length)).join();
-    return this.http.get(`${this.config.apiBase}/tracks?ids=${tracks}`);
-  }
-
   importTracks(offset: number) {
     let url = `${this.config.apiBase}/me/tracks?limit=50`;
     if (offset > 0) {
