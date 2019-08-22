@@ -11,8 +11,10 @@ export class AlbumSpotifyService {
     private http: HttpClient
   ) { }
 
-  getAlbums(ids: string[]) {
-    return this.http.get(`${this.config.apiBase}/albums?ids=${ids}`);
+  getAlbums(ids: string[], pageSize: number) {
+    const albums = ids.slice(0, Math.min(pageSize, ids.length)).join();
+    console.log(albums);
+    return this.http.get(`${this.config.apiBase}/albums?ids=${albums}`);
   }
 
   getAlbum(id: string) {

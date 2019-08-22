@@ -47,7 +47,7 @@ export class ArtistState {
     const start = action.page * action.pageSize;
     const end = start + action.pageSize;
     const pageIds = action.ids.slice(start, end);
-    this.artistService.getArtists(pageIds).subscribe((value: any) => {
+    this.artistService.getArtists(pageIds, action.pageSize).subscribe((value: any) => {
       ctx.dispatch(new GetArtistsSuccess(value.artists));
     });
   }

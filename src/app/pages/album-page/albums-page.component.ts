@@ -13,7 +13,7 @@ import {AlbumModel} from '../../store/models/album.model';
 })
 export class AlbumsPageComponent implements OnInit {
   public ids: string[];
-  public pageSize = 50;
+  public pageSize = 20;
   public selector = AlbumState.albums;
 
   constructor(
