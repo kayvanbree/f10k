@@ -17,7 +17,6 @@ import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-pag
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
-import {PlaylistSpotifyService} from './store/providers/playlist-spotify.service';
 import {ProfileSpotifyService} from './store/providers/profile-spotify.service';
 import {SearchSpotifyService} from './store/providers/search-spotify.service';
 import {TrackSpotifyService} from './store/providers/track-spotify.service';
@@ -45,6 +44,8 @@ import { ArtistNamesComponent } from './components/artist-names/artist-names.com
 import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
 import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
 import { PlaylistDetailPageComponent } from './pages/playlist-detail-page/playlist-detail-page.component';
+import {CollectionState} from './store/states/collection.state';
+import { SaveButtonComponent } from './components/save-button/save-button.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -60,29 +61,12 @@ const spotifyConfig = {
     'playlist-read-private',
     'user-modify-playback-state',
     'streaming',
-    ' user-read-playback-state'
+    'user-read-playback-state'
   ],
   authToken: localStorage.getItem('angular2-spotify-token'),
   apiBase: environment.apiBase,
   authorizationUrl: environment.authorizationUrl,
 };
-
-export function serialize(value: any) {
-  const newValue = {
-    ...value,
-    tracks: {
-      ...value.tracks,
-      tracks: [],
-    },
-    artists: {
-      ...value.artists,
-      artists: [],
-      currentArtist: null,
-      currentArtistId: null
-    }
-  };
-  return JSON.stringify(newValue);
-}
 
 @NgModule({
   declarations: [
@@ -112,6 +96,7 @@ export function serialize(value: any) {
     VirtualScrollListComponent,
     PlaylistPageComponent,
     PlaylistDetailPageComponent,
+    SaveButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,10 +108,24 @@ export function serialize(value: any) {
       PlayerState,
       AuthenticationState,
       AlbumState,
+      CollectionState,
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({
-      serialize
+      migrations: [
+        {
+          version: 1,
+          migrate: (state) => {
+            return {
+              collection: {
+                tracks: state.tracks.ids,
+                albums: state.albums.ids,
+                artists: state.artists.ids,
+              }
+            };
+          }
+        }
+      ],
     }),
     FormsModule,
     BrowserAnimationsModule,
@@ -139,7 +138,6 @@ export function serialize(value: any) {
       useClass: SpotifyAuthorizationInterceptor,
       multi: true
     },
-    PlaylistSpotifyService,
     ProfileSpotifyService,
     SearchSpotifyService,
     TrackSpotifyService,

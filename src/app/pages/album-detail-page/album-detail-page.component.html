@@ -23,7 +23,7 @@
       class="track-list"
       *ngIf="trackDataSource"
       [dataSource]="trackDataSource"
-      [columns]="['name', 'popularity','duration','track-saved']"
+      [columns]="['name', 'popularity','duration','saved']"
       (rowDoubleClick)="onRowDoubleClick($event)"
     ></app-virtual-scroll-list>
   </div>
