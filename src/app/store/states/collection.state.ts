@@ -127,7 +127,7 @@ export class CollectionState {
     const ids = action.importObject.items.map(x => x.track.id);
     ctx.setState(
       patch({
-        ids: append<string>(ids),
+        tracks: append<string>(ids),
       }),
     );
     if (action.importObject.next) {
