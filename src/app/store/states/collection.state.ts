@@ -76,14 +76,14 @@ export class CollectionState {
   }
 
   @Action(ImportTracks)
-  public importTracks(ctx: StateContext<TrackStateModel>, action: ImportTracks) {
+  public importTracks(ctx: StateContext<CollectionStateModel>, action: ImportTracks) {
     this.trackService.importTracks(action.offset).subscribe((value) => {
       ctx.dispatch(new ImportTracksSuccess(value));
     });
   }
 
   @Action(ImportTracksSuccess)
-  public importTracksSuccess(ctx: StateContext<TrackStateModel>, action: ImportTracksSuccess) {
+  public importTracksSuccess(ctx: StateContext<CollectionStateModel>, action: ImportTracksSuccess) {
     const ids = action.importObject.items.map(x => x.track.id);
     ctx.setState(
       patch({
@@ -96,14 +96,14 @@ export class CollectionState {
   }
 
   @Action(ImportPlaylists)
-  public importPlaylists(ctx: StateContext<TrackStateModel>, action: ImportPlaylists) {
+  public importPlaylists(ctx: StateContext<CollectionStateModel>, action: ImportPlaylists) {
     this.trackService.importPlaylists(action.offset).subscribe((value) => {
       ctx.dispatch(new ImportPlaylistsSuccess(value));
     });
   }
 
   @Action(ImportPlaylistsSuccess)
-  public importPlaylistsSuccess(ctx: StateContext<TrackStateModel>, action: ImportPlaylistsSuccess) {
+  public importPlaylistsSuccess(ctx: StateContext<CollectionStateModel>, action: ImportPlaylistsSuccess) {
     const ids = action.importObject.items;
     ids.forEach((value) => {
       ctx.dispatch(new ImportTracksFromPlaylist(value.id, 0));
@@ -116,14 +116,14 @@ export class CollectionState {
   }
 
   @Action(ImportTracksFromPlaylist)
-  public importFromPlaylistsTracks(ctx: StateContext<TrackStateModel>, action: ImportTracksFromPlaylist) {
+  public importFromPlaylistsTracks(ctx: StateContext<CollectionStateModel>, action: ImportTracksFromPlaylist) {
     this.trackService.importTracksFromPlaylists(action.id, action.offset).subscribe((value) => {
       ctx.dispatch(new ImportTracksFromPlaylistSuccess(action.id, value));
     });
   }
 
   @Action(ImportTracksFromPlaylistSuccess)
-  public importTracksFromPlaylistsSuccess(ctx: StateContext<TrackStateModel>, action: ImportTracksFromPlaylistSuccess) {
+  public importTracksFromPlaylistsSuccess(ctx: StateContext<CollectionStateModel>, action: ImportTracksFromPlaylistSuccess) {
     const ids = action.importObject.items.map(x => x.track.id);
     ctx.setState(
       patch({
