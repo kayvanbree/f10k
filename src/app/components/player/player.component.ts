@@ -6,3 +6,4 @@ import {Component} from '@angular/core';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {}
+
