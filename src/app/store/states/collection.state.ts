@@ -1,7 +1,17 @@
 import {CollectionStateModel} from '../models/collection-state.model';
-import {Action, createSelector, State, StateContext} from '@ngxs/store';
+import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store';
 import {append, patch, removeItem} from '@ngxs/store/operators';
-import {Remove, Save} from '../actions/collection.actions';
+import {
+  ImportPlaylists,
+  ImportPlaylistsSuccess,
+  ImportTracks,
+  ImportTracksFromPlaylist, ImportTracksFromPlaylistSuccess,
+  ImportTracksSuccess,
+  Remove,
+  Save
+} from '../actions/collection.actions';
+import {TrackSpotifyService} from '../providers/track-spotify.service';
+import {TrackStateModel} from '../models/track-state.model';
 
 @State<CollectionStateModel>({
   name: 'collection',
@@ -17,6 +27,23 @@ export class CollectionState {
       return state[type + 's'].filter(s => s === id).length > 0;
     });
   }
+
+  @Selector()
+  static tracks(state: CollectionStateModel) {
+    return state.tracks;
+  }
+
+  @Selector()
+  static albums(state: CollectionStateModel) {
+    return state.albums;
+  }
+
+  @Selector()
+  static artists(state: CollectionStateModel) {
+    return state.artists;
+  }
+
+  constructor(private trackService: TrackSpotifyService) {}
 
   @Action(Save)
   public save(ctx: StateContext<CollectionStateModel>, action: Save) {
@@ -45,6 +72,66 @@ export class CollectionState {
       case 'artist':
         this.removeArtist(ctx, action);
         break;
+    }
+  }
+
+  @Action(ImportTracks)
+  public importTracks(ctx: StateContext<TrackStateModel>, action: ImportTracks) {
+    this.trackService.importTracks(action.offset).subscribe((value) => {
+      ctx.dispatch(new ImportTracksSuccess(value));
+    });
+  }
+
+  @Action(ImportTracksSuccess)
+  public importTracksSuccess(ctx: StateContext<TrackStateModel>, action: ImportTracksSuccess) {
+    const ids = action.importObject.items.map(x => x.track.id);
+    ctx.setState(
+      patch({
+        tracks: append<string>(ids),
+      }),
+    );
+    if (action.importObject.next) {
+      ctx.dispatch(new ImportTracks(action.importObject.offset + 50));
+    }
+  }
+
+  @Action(ImportPlaylists)
+  public importPlaylists(ctx: StateContext<TrackStateModel>, action: ImportPlaylists) {
+    this.trackService.importPlaylists(action.offset).subscribe((value) => {
+      ctx.dispatch(new ImportPlaylistsSuccess(value));
+    });
+  }
+
+  @Action(ImportPlaylistsSuccess)
+  public importPlaylistsSuccess(ctx: StateContext<TrackStateModel>, action: ImportPlaylistsSuccess) {
+    const ids = action.importObject.items;
+    ids.forEach((value) => {
+      ctx.dispatch(new ImportTracksFromPlaylist(value.id, 0));
+    });
+    if (action.importObject.next) {
+      setTimeout(() => {
+        ctx.dispatch(new ImportPlaylists(action.importObject.offset + 50));
+      }, 60000);
+    }
+  }
+
+  @Action(ImportTracksFromPlaylist)
+  public importFromPlaylistsTracks(ctx: StateContext<TrackStateModel>, action: ImportTracksFromPlaylist) {
+    this.trackService.importTracksFromPlaylists(action.id, action.offset).subscribe((value) => {
+      ctx.dispatch(new ImportTracksFromPlaylistSuccess(action.id, value));
+    });
+  }
+
+  @Action(ImportTracksFromPlaylistSuccess)
+  public importTracksFromPlaylistsSuccess(ctx: StateContext<TrackStateModel>, action: ImportTracksFromPlaylistSuccess) {
+    const ids = action.importObject.items.map(x => x.track.id);
+    ctx.setState(
+      patch({
+        ids: append<string>(ids),
+      }),
+    );
+    if (action.importObject.next) {
+      ctx.dispatch(new ImportTracksFromPlaylist(action.id, action.importObject.offset + 50));
     }
   }
 

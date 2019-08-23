@@ -10,7 +10,6 @@ import {SpotifyAuthorizationInterceptor} from './interceptors/spotify-authorizat
 import { NavigationComponent } from './components/navigation/navigation.component';
 import {NgxsModule} from '@ngxs/store';
 import { ArtistsPageComponent } from './pages/artists/artists-page.component';
-import {ArtistState} from './store/states/artist.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {FormsModule} from '@angular/forms';
 import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-page.component';
@@ -19,7 +18,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProfileSpotifyService} from './store/providers/profile-spotify.service';
 import {SearchSpotifyService} from './store/providers/search-spotify.service';
 import {TrackSpotifyService} from './store/providers/track-spotify.service';
-import {TrackState} from './store/states/track.state';
 import { TracksPageComponent } from './pages/tracks/tracks-page.component';
 import {PlayerState} from './store/states/player.state';
 import { PlayerComponent } from './components/player/player.component';
@@ -35,7 +33,6 @@ import { VolumeControlComponent } from './components/volume-control/volume-contr
 import { PlayerTrackInfoComponent } from './components/player-track-info/player-track-info.component';
 import {AuthenticationState} from './store/states/authentication.state';
 import { AlbumsPageComponent } from './pages/album-page/albums-page.component';
-import {AlbumState} from './store/states/album.state';
 import { AlbumDetailPageComponent } from './pages/album-detail-page/album-detail-page.component';
 import { ArtistNamesComponent } from './components/artist-names/artist-names.component';
 import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
@@ -97,30 +94,12 @@ const spotifyConfig = {
     AppRoutingModule,
     HttpClientModule,
     NgxsModule.forRoot([
-      ArtistState,
-      TrackState,
       PlayerState,
       AuthenticationState,
-      AlbumState,
       CollectionState,
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsStoragePluginModule.forRoot({
-      migrations: [
-        {
-          version: 1,
-          migrate: (state) => {
-            return {
-              collection: {
-                tracks: state.tracks && state.tracks.ids ? state.tracks.ids: null,
-                albums: state.albums.ids,
-                artists: state.artists.ids,
-              }
-            };
-          }
-        }
-      ],
-    }),
+    NgxsStoragePluginModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
     MaterialImportModule,

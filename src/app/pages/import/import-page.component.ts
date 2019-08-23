@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ImportTracks, ImportPlaylists} from '../../store/actions/track.actions';
 import {Store} from '@ngxs/store';
+import {ImportPlaylists, ImportTracks} from '../../store/actions/collection.actions';
 
 @Component({
   selector: 'app-import-page',

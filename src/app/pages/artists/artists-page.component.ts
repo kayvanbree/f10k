@@ -4,6 +4,7 @@ import {ArtistModel} from '../../store/entities/artist.model';
 import {Router} from '@angular/router';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';
 import {EntityDataSource} from '../../datasources/entity-data-source';
+import {CollectionState} from '../../store/states/collection.state';
 
 @Component({
   selector: 'app-artists-page',
@@ -21,7 +22,7 @@ export class ArtistsPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.store.select(state => state.artists.ids).subscribe((value) => {
+    this.store.select(CollectionState.artists).subscribe((value) => {
       this.dataSource = new EntityDataSource(this.entityService, value, 'artist', this.pageSize);
     });
   }

@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {TrackModel} from '../../store/entities/track.model';
 import {PlayTrack} from '../../store/actions/player.actions';
-import {TrackState} from '../../store/states/track.state';
 import {EntityDataSource} from '../../datasources/entity-data-source';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';
+import {CollectionState} from '../../store/states/collection.state';
 
 @Component({
   selector: 'app-tracks-page',
@@ -21,7 +20,7 @@ export class TracksPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.store.select(state => state.tracks.ids).subscribe((value) => {
+    this.store.select(CollectionState.tracks).subscribe((value) => {
       if (value) {
         this.dataSource = new EntityDataSource(this.entityService, value, 'track', this.pageSize);
       }
