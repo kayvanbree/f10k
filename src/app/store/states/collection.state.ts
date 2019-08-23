@@ -20,18 +20,78 @@ export class CollectionState {
 
   @Action(Save)
   public save(ctx: StateContext<CollectionStateModel>, action: Save) {
-    ctx.setState(
-      patch({
-        [action.type]: append<string>([action.id]),
-      })
-    );
+    switch (action.type) {
+      case 'track':
+        this.saveTrack(ctx, action);
+        break;
+      case 'album':
+        this.saveAlbum(ctx, action);
+        break;
+      case 'artist':
+        this.saveArtist(ctx, action);
+        break;
+    }
   }
 
   @Action(Remove)
   public remove(ctx: StateContext<CollectionStateModel>, action: Remove) {
+    switch (action.type) {
+      case 'track':
+        this.removeTrack(ctx, action);
+        break;
+      case 'album':
+        this.removeAlbum(ctx, action);
+        break;
+      case 'artist':
+        this.removeArtist(ctx, action);
+        break;
+    }
+  }
+
+  private saveTrack(ctx, action) {
     ctx.setState(
       patch({
-        [action.type]: removeItem<string>(name => name === action.id),
+        tracks: append<string>([action.id]),
+      })
+    );
+  }
+
+  private removeTrack(ctx, action) {
+    ctx.setState(
+      patch({
+        tracks: removeItem<string>(name => name === action.id),
+      }),
+    );
+  }
+
+  private saveAlbum(ctx, action) {
+    ctx.setState(
+      patch({
+        album: append<string>([action.id]),
+      })
+    );
+  }
+
+  private removeAlbum(ctx, action) {
+    ctx.setState(
+      patch({
+        album: removeItem<string>(name => name === action.id),
+      }),
+    );
+  }
+
+  private saveArtist(ctx, action) {
+    ctx.setState(
+      patch({
+        artists: append<string>([action.id]),
+      })
+    );
+  }
+
+  private removeArtist(ctx, action) {
+    ctx.setState(
+      patch({
+        artists: removeItem<string>(name => name === action.id),
       }),
     );
   }
