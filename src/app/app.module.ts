@@ -7,10 +7,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home/home-page.component';
 import { RedirectPageComponent } from './pages/redirect/redirect-page.component';
 import {SpotifyAuthorizationInterceptor} from './interceptors/spotify-authorization-interceptor';
-import { PlaylistsComponent } from './components/playlists/playlists.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import {NgxsModule} from '@ngxs/store';
-import {FolderState} from './store/states/folder.state';
 import { ArtistsPageComponent } from './pages/artists/artists-page.component';
 import {ArtistState} from './store/states/artist.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
@@ -45,6 +43,8 @@ import { AlbumSaveButtonComponent } from './components/album-save-button/album-s
 import { AlbumDetailPageComponent } from './pages/album-detail-page/album-detail-page.component';
 import { ArtistNamesComponent } from './components/artist-names/artist-names.component';
 import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
+import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
+import { PlaylistDetailPageComponent } from './pages/playlist-detail-page/playlist-detail-page.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -90,7 +90,6 @@ export function serialize(value: any) {
     LoginPageComponent,
     HomePageComponent,
     RedirectPageComponent,
-    PlaylistsComponent,
     NavigationComponent,
     ArtistsPageComponent,
     SearchPageComponent,
@@ -111,13 +110,14 @@ export function serialize(value: any) {
     AlbumDetailPageComponent,
     ArtistNamesComponent,
     VirtualScrollListComponent,
+    PlaylistPageComponent,
+    PlaylistDetailPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxsModule.forRoot([
-      FolderState,
       ArtistState,
       TrackState,
       PlayerState,

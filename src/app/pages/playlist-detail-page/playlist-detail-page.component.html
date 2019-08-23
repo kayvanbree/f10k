@@ -1,0 +1,26 @@
+<div class="flex-col container" *ngIf="playlist">
+  <div class="album-info flex-row">
+    <div class="image-container">
+      <img
+        class="artist-image"
+        *ngIf="playlist?.images?.length > 0" [src]="playlist.images[0].url"
+      />
+    </div>
+
+    <div class="album-info-text flex">
+      <h1>{{playlist.name}}</h1>
+    </div>
+  </div>
+
+  <div class="album-label"><h2>Albums</h2></div>
+
+  <div class="flex">
+    <app-virtual-scroll-list
+      class="track-list"
+      *ngIf="trackDataSource"
+      [dataSource]="trackDataSource"
+      [columns]="columns"
+      (rowDoubleClick)="onRowDoubleClick($event)"
+    ></app-virtual-scroll-list>
+  </div>
+</div>

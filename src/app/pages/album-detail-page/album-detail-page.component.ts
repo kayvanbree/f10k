@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngxs/store';
 import {ActivatedRoute} from '@angular/router';
-import {AlbumModel} from '../../store/models/album.model';
+import {AlbumModel} from '../../store/entities/album.model';
 import {PlayTrack} from '../../store/actions/player.actions';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';
 import {NestedEntityDataSource} from '../../datasources/nested-entity-data-source';

@@ -1,8 +1,9 @@
 import {PagedDataSource} from './paged-data-source';
-import {TrackModel} from '../store/models/track.model';
+import {TrackModel} from '../store/entities/track.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CollectionViewer} from '@angular/cdk/collections';
 import {SearchSpotifyService} from '../store/providers/search-spotify.service';
+import {RowDoubleClickEvent} from '../events/row-double-click-event';
 
 export class SearchDataSource extends PagedDataSource<TrackModel> {
   public entities = [];
@@ -36,7 +37,10 @@ export class SearchDataSource extends PagedDataSource<TrackModel> {
     });
   }
 
-  public getIds(): string[] {
-    return this.entities.map(x => x.id);
+  public getRowDoubleClickEvent(row: any): RowDoubleClickEvent {
+    return {
+      context: this.entities.map(x => x.id),
+      id: row.id,
+    };
   }
 }

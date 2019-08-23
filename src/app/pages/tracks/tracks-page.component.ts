@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {TrackModel} from '../../store/models/track.model';
+import {TrackModel} from '../../store/entities/track.model';
 import {PlayTrack} from '../../store/actions/player.actions';
 import {TrackState} from '../../store/states/track.state';
 import {EntityDataSource} from '../../datasources/entity-data-source';

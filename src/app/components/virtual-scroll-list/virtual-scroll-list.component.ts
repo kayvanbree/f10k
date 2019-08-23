@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {SpotifyEntityModel} from '../../store/models/spotify-entity.model';
+import {SpotifyEntityModel} from '../../store/entities/spotify-entity.model';
 import {DataSource} from '@angular/cdk/table';
 import {PagedDataSource} from '../../datasources/paged-data-source';
 
@@ -48,11 +48,8 @@ export class VirtualScrollListComponent implements OnInit, OnChanges {
     this.dataSource.openPage(event.pageIndex);
   }
 
-  public onRowClick(event: SpotifyEntityModel) {
-    this.rowDoubleClick.emit({
-      id: event.id,
-      context: this.dataSource.getIds(),
-    });
+  public onRowClick(event: any) {
+    this.rowDoubleClick.emit(this.dataSource.getRowDoubleClickEvent(event));
   }
 
   public trackBy(index, item) {

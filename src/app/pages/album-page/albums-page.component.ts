@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngxs/store';
 import {Router} from '@angular/router';
-import {AlbumModel} from '../../store/models/album.model';
+import {AlbumModel} from '../../store/entities/album.model';
 import {EntityDataSource} from '../../datasources/entity-data-source';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';
 

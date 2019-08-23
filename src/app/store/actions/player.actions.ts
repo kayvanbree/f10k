@@ -1,4 +1,4 @@
-import {TrackModel} from '../models/track.model';
+import {TrackModel} from '../entities/track.model';
 
 export class PlayTrack {
   static readonly type = '[Player] PlayTrack';
