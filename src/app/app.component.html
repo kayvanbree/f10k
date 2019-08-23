@@ -13,7 +13,7 @@
       <router-outlet></router-outlet>
     </main>
   </div>
-  <footer *ngIf="loggedIn | async" class="footer  mat-elevation-z8">
+  <footer *ngIf="(loggedIn | async) && (player | async)?.current_track" class="footer  mat-elevation-z8">
     <app-player></app-player>
   </footer>
 </div>

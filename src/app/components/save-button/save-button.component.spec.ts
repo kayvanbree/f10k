@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArtistSaveButtonComponent } from './artist-save-button.component';
+import { SaveButtonComponent } from './save-button.component';
 
-describe('ArtistSaveButtonComponent', () => {
-  let component: ArtistSaveButtonComponent;
-  let fixture: ComponentFixture<ArtistSaveButtonComponent>;
+describe('SaveButtonComponent', () => {
+  let component: SaveButtonComponent;
+  let fixture: ComponentFixture<SaveButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArtistSaveButtonComponent ]
+      declarations: [ SaveButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArtistSaveButtonComponent);
+    fixture = TestBed.createComponent(SaveButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

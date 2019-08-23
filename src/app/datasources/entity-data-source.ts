@@ -34,10 +34,12 @@ export class EntityDataSource extends PagedDataSource<SpotifyEntityModel> {
     const start = page * this.pageSize;
     const end = start + this.pageSize;
     const pageIds = this.ids.slice(start, end);
-    this.entityService.getEntities(pageIds, this.type, this.pageSize).subscribe((value: any) => {
-      this.entities = value[this.type + 's'];
-      this.subject.next(this.entities);
-    });
+    if (pageIds.length > 0) {
+      this.entityService.getEntities(pageIds, this.type, this.pageSize).subscribe((value: any) => {
+        this.entities = value[this.type + 's'];
+        this.subject.next(this.entities);
+      });
+    }
   }
 
   public getRowDoubleClickEvent(row: any): RowDoubleClickEvent {

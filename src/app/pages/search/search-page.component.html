@@ -3,7 +3,7 @@
     <app-virtual-scroll-list
       class="item-list"
       [dataSource]="trackDataSource"
-      [columns]="['album-image', 'name', 'artist', 'album', 'popularity', 'duration', 'track-saved']"
+      [columns]="['album-image', 'name', 'artist', 'album', 'popularity', 'duration', 'saved']"
       (rowDoubleClick)="onTrackDoubleClick($event)"
     ></app-virtual-scroll-list>
   </mat-tab>
@@ -12,7 +12,7 @@
     <app-virtual-scroll-list
       class="item-list"
       [dataSource]="artistDataSource"
-      [columns]="['image', 'name', 'popularity', 'artist-saved']"
+      [columns]="['image', 'name', 'popularity', 'saved']"
       (rowDoubleClick)="onArtistDoubleClick($event)"
     ></app-virtual-scroll-list>
   </mat-tab>
@@ -21,7 +21,7 @@
     <app-virtual-scroll-list
       class="item-list"
       [dataSource]="albumDataSource"
-      [columns]="['image', 'name', 'artist', 'popularity', 'album-saved']"
+      [columns]="['image', 'name', 'artist', 'popularity', 'saved']"
       (rowDoubleClick)="onAlbumDoubleClick($event)"
     ></app-virtual-scroll-list>
   </mat-tab>

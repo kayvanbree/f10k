@@ -10,19 +10,14 @@ import {SpotifyAuthorizationInterceptor} from './interceptors/spotify-authorizat
 import { NavigationComponent } from './components/navigation/navigation.component';
 import {NgxsModule} from '@ngxs/store';
 import { ArtistsPageComponent } from './pages/artists/artists-page.component';
-import {ArtistState} from './store/states/artist.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {FormsModule} from '@angular/forms';
 import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-page.component';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
-import {PlaylistSpotifyService} from './store/providers/playlist-spotify.service';
 import {ProfileSpotifyService} from './store/providers/profile-spotify.service';
 import {SearchSpotifyService} from './store/providers/search-spotify.service';
 import {TrackSpotifyService} from './store/providers/track-spotify.service';
-import { TrackSaveButtonComponent } from './components/track-save-button/track-save-button.component';
-import {TrackState} from './store/states/track.state';
 import { TracksPageComponent } from './pages/tracks/tracks-page.component';
 import {PlayerState} from './store/states/player.state';
 import { PlayerComponent } from './components/player/player.component';
@@ -38,13 +33,13 @@ import { VolumeControlComponent } from './components/volume-control/volume-contr
 import { PlayerTrackInfoComponent } from './components/player-track-info/player-track-info.component';
 import {AuthenticationState} from './store/states/authentication.state';
 import { AlbumsPageComponent } from './pages/album-page/albums-page.component';
-import {AlbumState} from './store/states/album.state';
-import { AlbumSaveButtonComponent } from './components/album-save-button/album-save-button.component';
 import { AlbumDetailPageComponent } from './pages/album-detail-page/album-detail-page.component';
 import { ArtistNamesComponent } from './components/artist-names/artist-names.component';
 import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
 import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
 import { PlaylistDetailPageComponent } from './pages/playlist-detail-page/playlist-detail-page.component';
+import {CollectionState} from './store/states/collection.state';
+import { SaveButtonComponent } from './components/save-button/save-button.component';
 
 const spotifyConfig = {
   clientId: environment.clientId,
@@ -60,29 +55,12 @@ const spotifyConfig = {
     'playlist-read-private',
     'user-modify-playback-state',
     'streaming',
-    ' user-read-playback-state'
+    'user-read-playback-state'
   ],
   authToken: localStorage.getItem('angular2-spotify-token'),
   apiBase: environment.apiBase,
   authorizationUrl: environment.authorizationUrl,
 };
-
-export function serialize(value: any) {
-  const newValue = {
-    ...value,
-    tracks: {
-      ...value.tracks,
-      tracks: [],
-    },
-    artists: {
-      ...value.artists,
-      artists: [],
-      currentArtist: null,
-      currentArtistId: null
-    }
-  };
-  return JSON.stringify(newValue);
-}
 
 @NgModule({
   declarations: [
@@ -94,8 +72,6 @@ export function serialize(value: any) {
     ArtistsPageComponent,
     SearchPageComponent,
     ArtistDetailPageComponent,
-    ArtistSaveButtonComponent,
-    TrackSaveButtonComponent,
     TracksPageComponent,
     PlayerComponent,
     ImportPageComponent,
@@ -106,28 +82,24 @@ export function serialize(value: any) {
     VolumeControlComponent,
     PlayerTrackInfoComponent,
     AlbumsPageComponent,
-    AlbumSaveButtonComponent,
     AlbumDetailPageComponent,
     ArtistNamesComponent,
     VirtualScrollListComponent,
     PlaylistPageComponent,
     PlaylistDetailPageComponent,
+    SaveButtonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxsModule.forRoot([
-      ArtistState,
-      TrackState,
       PlayerState,
       AuthenticationState,
-      AlbumState,
+      CollectionState,
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsStoragePluginModule.forRoot({
-      serialize
-    }),
+    NgxsStoragePluginModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
     MaterialImportModule,
@@ -139,7 +111,6 @@ export function serialize(value: any) {
       useClass: SpotifyAuthorizationInterceptor,
       multi: true
     },
-    PlaylistSpotifyService,
     ProfileSpotifyService,
     SearchSpotifyService,
     TrackSpotifyService,

@@ -9,7 +9,7 @@
 
     <div class="artist-info-text flex">
       <h1>{{artist.name}}</h1>
-      <app-artist-save-button [id]="artist.id"></app-artist-save-button>
+      <app-save-button [type]="'artist'" [id]="artist.id"></app-save-button>
       <div *ngIf="artist?.genres?.length > 0">
         Genres:
         <ng-container *ngFor="let genre of artist.genres">{{genre}},</ng-container>
@@ -24,7 +24,7 @@
       class="album-list"
       *ngIf="albumDataSource"
       [dataSource]="albumDataSource"
-      [columns]="['image', 'name', 'popularity', 'album-saved']"
+      [columns]="['image', 'name', 'popularity', 'saved']"
       (rowDoubleClick)="onRowDoubleClick($event)"
     ></app-virtual-scroll-list>
   </div>

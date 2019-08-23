@@ -35,11 +35,9 @@
       }
     }
 
-    &.mat-column-track-saved,
-    &.mat-column-artist-saved,
-    &.mat-column-duration,
+    &.mat-column-saved,
     &.mat-column-popularity,
-    &.mat-column-album-saved {
+    &.mat-column-playlist-track-saved {
       width: 40px;
     }
   }

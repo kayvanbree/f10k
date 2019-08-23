@@ -1,11 +1,11 @@
-export class SaveTrack {
-  static readonly type = '[Track] SaveTrack';
-  constructor(public id: string) {}
+export class Save {
+  static readonly type = '[Collection] Save';
+  constructor(public entityType: string, public id: string) {}
 }
 
-export class RemoveTrack {
-  static readonly type = '[Track] RemoveTrack';
-  constructor(public id: string) {}
+export class Remove {
+  static readonly type = '[Collection] Remove';
+  constructor(public entityType: string, public id: string) {}
 }
 
 export class ImportTracks {

@@ -2,10 +2,11 @@
   <img src="{{player.current_track.album.images[2].url}}"/>
 </div>
 <div class="artist-text vertical-align column">
-  <app-track-save-button
+  <app-save-button
     class="save-button"
+    [type]="'track'"
     [id]="player.current_track.id"
-  ></app-track-save-button>
+  ></app-save-button>
   <div class="text">
     <div class="track max-lines">
       {{player.current_track.name}}
