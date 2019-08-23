@@ -10,7 +10,7 @@
     <div class="album-info-text flex">
       <h1>{{album.name}} ({{album.release_date}})</h1>
       <h2>by <app-artist-names [artists]="album.artists"></app-artist-names></h2>
-      <app-album-save-button [id]="album.id"></app-album-save-button>
+      <app-save-button [type]="'album'" [id]="album.id"></app-save-button>
       <div *ngIf="album?.genres?.length > 0">
         Genres:
         <ng-container *ngFor="let genre of album.genres">{{genre}},</ng-container>

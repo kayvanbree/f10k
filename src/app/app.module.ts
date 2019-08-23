@@ -16,11 +16,9 @@ import {FormsModule} from '@angular/forms';
 import {ArtistDetailPageComponent} from './pages/artist-detail/artist-detail-page.component';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ArtistSaveButtonComponent } from './components/artist-save-button/artist-save-button.component';
 import {ProfileSpotifyService} from './store/providers/profile-spotify.service';
 import {SearchSpotifyService} from './store/providers/search-spotify.service';
 import {TrackSpotifyService} from './store/providers/track-spotify.service';
-import { TrackSaveButtonComponent } from './components/track-save-button/track-save-button.component';
 import {TrackState} from './store/states/track.state';
 import { TracksPageComponent } from './pages/tracks/tracks-page.component';
 import {PlayerState} from './store/states/player.state';
@@ -38,7 +36,6 @@ import { PlayerTrackInfoComponent } from './components/player-track-info/player-
 import {AuthenticationState} from './store/states/authentication.state';
 import { AlbumsPageComponent } from './pages/album-page/albums-page.component';
 import {AlbumState} from './store/states/album.state';
-import { AlbumSaveButtonComponent } from './components/album-save-button/album-save-button.component';
 import { AlbumDetailPageComponent } from './pages/album-detail-page/album-detail-page.component';
 import { ArtistNamesComponent } from './components/artist-names/artist-names.component';
 import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
@@ -78,8 +75,6 @@ const spotifyConfig = {
     ArtistsPageComponent,
     SearchPageComponent,
     ArtistDetailPageComponent,
-    ArtistSaveButtonComponent,
-    TrackSaveButtonComponent,
     TracksPageComponent,
     PlayerComponent,
     ImportPageComponent,
@@ -90,7 +85,6 @@ const spotifyConfig = {
     VolumeControlComponent,
     PlayerTrackInfoComponent,
     AlbumsPageComponent,
-    AlbumSaveButtonComponent,
     AlbumDetailPageComponent,
     ArtistNamesComponent,
     VirtualScrollListComponent,
@@ -118,7 +112,7 @@ const spotifyConfig = {
           migrate: (state) => {
             return {
               collection: {
-                tracks: state.tracks.ids,
+                tracks: state.tracks && state.tracks.ids ? state.tracks.ids: null,
                 albums: state.albums.ids,
                 artists: state.artists.ids,
               }

@@ -14,13 +14,13 @@ import {Remove, Save} from '../actions/collection.actions';
 export class CollectionState {
   static isSaved(type: string, id: string) {
     return createSelector([CollectionState], (state: CollectionStateModel) => {
-      return state[type].filter(s => s === id).length > 0;
+      return state[type + 's'].filter(s => s === id).length > 0;
     });
   }
 
   @Action(Save)
   public save(ctx: StateContext<CollectionStateModel>, action: Save) {
-    switch (action.type) {
+    switch (action.entityType) {
       case 'track':
         this.saveTrack(ctx, action);
         break;
@@ -35,7 +35,7 @@ export class CollectionState {
 
   @Action(Remove)
   public remove(ctx: StateContext<CollectionStateModel>, action: Remove) {
-    switch (action.type) {
+    switch (action.entityType) {
       case 'track':
         this.removeTrack(ctx, action);
         break;
@@ -67,7 +67,7 @@ export class CollectionState {
   private saveAlbum(ctx, action) {
     ctx.setState(
       patch({
-        album: append<string>([action.id]),
+        albums: append<string>([action.id]),
       })
     );
   }
@@ -75,7 +75,7 @@ export class CollectionState {
   private removeAlbum(ctx, action) {
     ctx.setState(
       patch({
-        album: removeItem<string>(name => name === action.id),
+        albums: removeItem<string>(name => name === action.id),
       }),
     );
   }
