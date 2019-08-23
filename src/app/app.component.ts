@@ -14,7 +14,7 @@ import {PlayerStateModel} from './store/models/player-state.model';
 export class AppComponent {
   title = 'f10k';
 
-  @Select(PlayerState) player: PlayerStateModel;
+  @Select(PlayerState) player: Observable<PlayerStateModel>;
   @Select(AuthenticationState.isLoggedIn) public loggedIn: Observable<boolean>;
 
   constructor(private store: Store) {}
