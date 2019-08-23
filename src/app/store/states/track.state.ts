@@ -13,10 +13,7 @@ import {
 @State<TrackStateModel>({
   name: 'tracks',
   defaults: {
-    ids: [
-      '7lT3Y2QlPs792zEfOj4b0K'
-    ],
-    tracks: [],
+    ids: [],
   }
 })
 export class TrackState {

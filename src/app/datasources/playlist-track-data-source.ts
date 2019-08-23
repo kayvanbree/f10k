@@ -1,12 +1,13 @@
-import {TrackModel} from '../store/entities/track.model';
-import {CollectionViewer} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {PagedDataSource} from './paged-data-source';
 import {SpotifyEntityModel} from '../store/entities/spotify-entity.model';
 import {SpotifyEntityService} from '../store/providers/spotify-entity.service';
+import {PagedDataSource} from './paged-data-source';
+import {CollectionViewer} from '@angular/cdk/collections';
+import {TrackModel} from '../store/entities/track.model';
 import {RowDoubleClickEvent} from '../events/row-double-click-event';
+import {PlaylistTrackModel} from '../store/entities/playlist-track-model';
 
-export class EntityDataSource extends PagedDataSource<SpotifyEntityModel> {
+export class PlaylistTrackDataSource extends PagedDataSource<SpotifyEntityModel>  {
   private entities = [];
 
   private subject = new BehaviorSubject<SpotifyEntityModel[]>(this.entities);
@@ -14,12 +15,12 @@ export class EntityDataSource extends PagedDataSource<SpotifyEntityModel> {
 
   constructor(
     private entityService: SpotifyEntityService,
-    private ids: string[],
+    private id: string,
+    private parentType: string,
     public type: string,
     public pageSize: number,
   ) {
     super();
-    this.total = ids.length > 0 ? ids.length : 0;
   }
 
   connect(collectionViewer: CollectionViewer): Observable<TrackModel[] | ReadonlyArray<SpotifyEntityModel>> {
@@ -31,19 +32,17 @@ export class EntityDataSource extends PagedDataSource<SpotifyEntityModel> {
   }
 
   public openPage(page): void {
-    const start = page * this.pageSize;
-    const end = start + this.pageSize;
-    const pageIds = this.ids.slice(start, end);
-    this.entityService.getEntities(pageIds, this.type, this.pageSize).subscribe((value: any) => {
-      this.entities = value[this.type + 's'];
+    this.entityService.getNestedEntities(this.id, this.parentType, this.type, page, this.pageSize).subscribe((value: any) => {
+      this.entities = value.items;
+      this.total = value.total;
       this.subject.next(this.entities);
     });
   }
 
   public getRowDoubleClickEvent(row: any): RowDoubleClickEvent {
     return {
-      context: this.ids,
-      id: row.id,
+      context: this.entities.map(x => x.track.id),
+      id: row.track.id,
     };
   }
 }

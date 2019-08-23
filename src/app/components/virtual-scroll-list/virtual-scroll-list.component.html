@@ -68,6 +68,55 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="playlist-track-name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.track.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="playlist-track-artist">
+      <th mat-header-cell *matHeaderCellDef> Artist</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngFor="let artist of element.track.artists; let last = last">
+          <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
+          <ng-container *ngIf="!last">,</ng-container>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="playlist-track-saved">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <app-track-save-button [id]="element.track.id"></app-track-save-button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="playlist-track-album-image">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"><img *ngIf="element.track.album.images[2]"
+                                                  src="{{element.track.album.images[2].url}}"/></td>
+    </ng-container>
+
+    <ng-container matColumnDef="playlist-track-popularity">
+      <th mat-header-cell *matHeaderCellDef>Popularity</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-progress-bar class="progress-bar" [value]="element.popularity"></mat-progress-bar>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="playlist-track-duration">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>timer</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element">{{element.track.duration_ms | minutesSeconds}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="playlist-track-album">
+      <th mat-header-cell *matHeaderCellDef> Album</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/album', element.track.album.id]">{{element.track.album.name}}</a>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columns;" (dblclick)="onRowClick(row)"></tr>
   </table>

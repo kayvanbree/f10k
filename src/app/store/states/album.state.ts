@@ -7,7 +7,6 @@ import {RemoveAlbum, SaveAlbum} from '../actions/album.actions';
   name: 'albums',
   defaults: {
     ids: [],
-    albums: [],
   }
 })
 export class AlbumState {

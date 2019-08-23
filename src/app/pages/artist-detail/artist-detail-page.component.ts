@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngxs/store';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ArtistModel} from '../../store/models/artist.model';
-import {AlbumModel} from '../../store/models/album.model';
+import {ArtistModel} from '../../store/entities/artist.model';
 import {SpotifyEntityService} from '../../store/providers/spotify-entity.service';
 import {NestedEntityDataSource} from '../../datasources/nested-entity-data-source';
 
@@ -30,7 +29,7 @@ export class ArtistDetailPageComponent implements OnInit {
     });
   }
 
-  public onRowDoubleClick(event: AlbumModel) {
+  public onRowDoubleClick(event) {
     this.router.navigate(['album', event.id]);
   }
 

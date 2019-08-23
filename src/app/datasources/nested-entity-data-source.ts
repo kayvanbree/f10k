@@ -1,9 +1,10 @@
 import {BehaviorSubject, Observable} from 'rxjs';
-import {SpotifyEntityModel} from '../store/models/spotify-entity.model';
+import {SpotifyEntityModel} from '../store/entities/spotify-entity.model';
 import {SpotifyEntityService} from '../store/providers/spotify-entity.service';
 import {PagedDataSource} from './paged-data-source';
 import {CollectionViewer} from '@angular/cdk/collections';
-import {TrackModel} from '../store/models/track.model';
+import {TrackModel} from '../store/entities/track.model';
+import {RowDoubleClickEvent} from '../events/row-double-click-event';
 
 export class NestedEntityDataSource extends PagedDataSource<SpotifyEntityModel>  {
   private entities = [];
@@ -37,7 +38,10 @@ export class NestedEntityDataSource extends PagedDataSource<SpotifyEntityModel> 
     });
   }
 
-  public getIds(): string[] {
-    return this.entities.map(x => x.id);
+  public getRowDoubleClickEvent(row: any): RowDoubleClickEvent {
+    return {
+      context: this.entities.map(x => x.id),
+      id: row.id,
+    };
   }
 }

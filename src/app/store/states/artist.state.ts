@@ -9,12 +9,7 @@ import {append, patch, removeItem} from '@ngxs/store/operators';
 @State<ArtistStateModel>({
   name: 'artists',
   defaults: {
-    ids: [
-      '0fHBsOHvZ9LDBZ2GaLuxxm',
-      '1UsiNk3VkfrQDLuCDMxitB',
-      '3ZMO6No33TsxKjkqLYgEu9',
-    ],
-    artists: [],
+    ids: [],
   }
 })
 export class ArtistState {

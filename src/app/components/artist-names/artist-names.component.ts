@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ArtistModel} from '../../store/models/artist.model';
+import {ArtistModel} from '../../store/entities/artist.model';
 
 @Component({
   selector: 'app-artist-names',
