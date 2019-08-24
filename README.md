@@ -12,21 +12,21 @@ You can LOSE your saved songs as long as we don't have a backend yet.
 
 ## Current features
 
-- Save tracks and artists
-- View saved tracks and artists
-- Track/artist lists pagination (also in search)
+- Save tracks, albums and artists
+- View saved tracks, albums and artists
+- Track/album/artist/playlists lists pagination (also in search)
 - Import saved tracks from your Spotify account
 - Play tracks
 - Next + previous song
+- Volume control
 - Current track information (track position, album, artist)
-- Search tracks and artists
+- Search tracks, albums, artists and playlists
+- Control other devices
 
 ## Planned features
 
-- Control other devices
 - Play a list of all your saved tracks
 - Play your saved tracks on shuffle
-- Volume control
 - Replacing pagination by virtual scrolling
 - Play an album
 - Export saved tracks to Spotify
