@@ -28,6 +28,9 @@ export class TracksPageComponent implements OnInit {
   }
 
   public onRowDoubleClick(event): void {
-    this.store.dispatch(new PlayTrack(event.context, event.id));
+    const offset: any = {
+      uri: event.uri,
+    };
+    this.store.dispatch(new PlayTrack(null, this.dataSource.entities.map(x => x.uri), offset));
   }
 }

@@ -134,15 +134,25 @@ export class PlayerSpotifyService {
     });
   }
 
-  playTrack(ids: string[], id: string, deviceId: string, current: boolean) {
-    let url = `${this.config.apiBase}/me/player/play`;
-    // url += current ? '' : '?device_id=' + deviceId;
-    url += '?device_id=' + deviceId;
-    const index = ids.findIndex(x => x === id);
-    const queue = ids.slice(index, Math.min(index + 50, ids.length)).map(x => `spotify:track:${x}`);
-    return this.http.put(url, {
-      uris: queue,
-    });
+  playTrack(
+    deviceId: string,
+    contextUri?: string,
+    uris?: string[],
+    offset?: { position_ms?: number, uri?: string },
+  ) {
+    const url = `${this.config.apiBase}/me/player/play?device_id=${deviceId}`;
+
+    const body: any = {};
+    if (contextUri) {
+      body.context_uri = contextUri;
+    } else if (uris) {
+      body.uris = uris;
+    }
+    if (offset) {
+      body.offset = offset;
+    }
+
+    return this.http.put(url, body);
   }
 
   togglePlay() {

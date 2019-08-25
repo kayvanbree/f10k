@@ -30,7 +30,11 @@ export class AlbumDetailPageComponent implements OnInit {
   }
 
   public onRowDoubleClick(event) {
-    this.store.dispatch(new PlayTrack(event.context, event.id));
+    const offset: any = {
+      uri: event.uri,
+    };
+
+    this.store.dispatch(new PlayTrack(this.album.uri, null, offset));
   }
 
   private loadEntities(id) {

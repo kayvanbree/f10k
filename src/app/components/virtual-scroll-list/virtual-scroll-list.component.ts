@@ -31,10 +31,7 @@ export class VirtualScrollListComponent implements OnInit, OnChanges {
   /**
    * Emits an event containing the row object and the ids of the rest of the page
    */
-  @Output() public rowDoubleClick = new EventEmitter<{
-    id: string,
-    context: string[]
-  }>();
+  @Output() public rowDoubleClick = new EventEmitter<any>();
 
   public ngOnInit(): void {
     this.dataSource.openPage(0);
@@ -49,7 +46,7 @@ export class VirtualScrollListComponent implements OnInit, OnChanges {
   }
 
   public onRowClick(event: any) {
-    this.rowDoubleClick.emit(this.dataSource.getRowDoubleClickEvent(event));
+    this.rowDoubleClick.emit(event);
   }
 
   public trackBy(index, item) {

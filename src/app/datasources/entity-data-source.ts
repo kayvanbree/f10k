@@ -7,7 +7,7 @@ import {SpotifyEntityService} from '../store/providers/spotify-entity.service';
 import {RowDoubleClickEvent} from '../events/row-double-click-event';
 
 export class EntityDataSource extends PagedDataSource<SpotifyEntityModel> {
-  private entities = [];
+  public entities = [];
 
   private subject = new BehaviorSubject<SpotifyEntityModel[]>(this.entities);
   private observable = this.subject.asObservable();

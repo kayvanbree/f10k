@@ -3,9 +3,10 @@ import {TrackModel} from '../entities/track.model';
 export class PlayTrack {
   static readonly type = '[Player] PlayTrack';
   constructor(
-    public ids: string[],
-    public id: string) {
-  }
+    public contextUri?: string,
+    public uris?: string[],
+    public offset?: { position?: number, uri?: string },
+  ) {}
 }
 
 export class UpdatePlayerStatus {

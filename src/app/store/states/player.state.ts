@@ -34,10 +34,10 @@ export class PlayerState {
     const state = ctx.getState();
     ctx.setState({
       ...state,
-      track_list: action.ids,
-      current_track_id: action.id,
+      track_list: action.uris,
+      current_track_id: '',
     });
-    this.playerService.playTrack(action.ids, action.id, state.device.id, !!state.initialized).subscribe();
+    this.playerService.playTrack(state.device.id, action.contextUri, action.uris, action.offset).subscribe();
   }
 
   @Action(TogglePlay)

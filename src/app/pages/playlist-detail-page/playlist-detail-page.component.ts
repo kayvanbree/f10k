@@ -42,7 +42,10 @@ export class PlaylistDetailPageComponent implements OnInit {
   }
 
   public onRowDoubleClick(event) {
-    this.store.dispatch(new PlayTrack(event.context, event.id));
+    const offset: any = {
+      uri: event.track.uri,
+    };
+    this.store.dispatch(new PlayTrack(this.playlist.uri, null, offset));
   }
 
   private loadEntities(id) {
