@@ -21,7 +21,7 @@ import {
     device_id: null,
     paused: true,
     track_list: [],
-    current_track_id: null,
+    current_track_id: '',
     volume: 50,
     device: null,
   }
