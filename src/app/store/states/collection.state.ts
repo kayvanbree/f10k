@@ -11,7 +11,6 @@ import {
   Save
 } from '../actions/collection.actions';
 import {TrackSpotifyService} from '../providers/track-spotify.service';
-import {TrackStateModel} from '../models/track-state.model';
 
 @State<CollectionStateModel>({
   name: 'collection',

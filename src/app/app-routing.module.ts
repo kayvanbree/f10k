@@ -13,6 +13,7 @@ import {AlbumsPageComponent} from './pages/album-page/albums-page.component';
 import {AlbumDetailPageComponent} from './pages/album-detail-page/album-detail-page.component';
 import {PlaylistPageComponent} from './pages/playlist-page/playlist-page.component';
 import {PlaylistDetailPageComponent} from './pages/playlist-detail-page/playlist-detail-page.component';
+import {RedirectPageComponent} from './pages/redirect/redirect-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'tracks', component: TracksPageComponent, canActivate: [SpotifyGuard] },
   { path: 'search', component: SearchPageComponent, canActivate: [SpotifyGuard] },
   { path: 'import', component: ImportPageComponent, canActivate: [SpotifyGuard] },
-  { path: '**', component: HomePageComponent, canActivate: [SpotifyRedirectGuard, SpotifyGuard] },
+  { path: 'spotify-redirect', component: RedirectPageComponent, canActivate: [SpotifyRedirectGuard] },
+  { path: '**', component: HomePageComponent, canActivate: [ SpotifyGuard] },
 ];
 
 @NgModule({
