@@ -1,7 +1,7 @@
 <div class="container f10k-dark">
   <header class="header mat-elevation-z8">
     <span class="app-title"><a [routerLink]="['/home']">{{title}}</a></span>
-    <button *ngIf="(loggedIn | async) == false" (click)="logout()">Logout</button>
+    <button *ngIf="loggedIn | async" (click)="logout()">Logout</button>
     <span class="flex-stuff"></span>
     <app-search *ngIf="loggedIn | async" class="search"></app-search>
   </header>

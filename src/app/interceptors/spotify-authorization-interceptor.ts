@@ -32,8 +32,9 @@ export class SpotifyAuthorizationInterceptor implements HttpInterceptor {
           this.store.dispatch(new RefreshLogin()).subscribe(() => {
             next.handle(request);
           });
+        } else {
+          return throwError(error);
         }
-        return throwError(error);
       }),
     );
   }

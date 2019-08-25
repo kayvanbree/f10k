@@ -1,8 +1,8 @@
 export class UpdateAuthenticationTokens {
   static readonly type = '[Auth] UpdateAuthenticationTokens';
   constructor(
-    public ngxsSpotifyToken: string,
-    public ngxsSpotifyTokenType: string,
+    public ngxsSpotifyAccessToken: string,
+    public ngxsSpotifyRefreshToken: string,
     public ngxsSpotifyTokenExpires: number,
   ) {}
 }
