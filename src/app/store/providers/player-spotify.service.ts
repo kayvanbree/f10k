@@ -3,8 +3,9 @@ import {SpotifyConfig} from '../../definitions/spotify-config';
 import {HttpClient} from '@angular/common/http';
 import {SpotifyAuthenticationService} from './spotify-authentication.service';
 import {RegisterPlayer, UpdateDeviceStatus, UpdatePlayerStatus, UpdateVolume} from '../actions/player.actions';
-import {Store} from '@ngxs/store';
+import {Select, Store} from '@ngxs/store';
 import {AuthenticationState} from '../states/authentication.state';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class PlayerSpotifyService {
   private player;
   private playerRegistered = false;
   private initialized = false;
+  private isLoggedIn: boolean;
 
   constructor(
     @Inject('SpotifyConfig') private config: SpotifyConfig,
@@ -20,6 +22,9 @@ export class PlayerSpotifyService {
     private spotifyAuthenticationService: SpotifyAuthenticationService,
     private store: Store,
   ) {
+    this.store.select(AuthenticationState.isLoggedIn).subscribe(value => {
+      this.isLoggedIn = value;
+    });
   }
 
   public isInitialized(): boolean {
@@ -98,17 +103,45 @@ export class PlayerSpotifyService {
     this.initialized = true;
   }
 
-  private getStateChanges() {
-    this.player.getCurrentState().then((playbackState) => {
-      if (playbackState) {
-        this.store.dispatch(new UpdatePlayerStatus(
-          playbackState.track_window ? playbackState.track_window.current_track : null,
-          playbackState.duration,
-          playbackState.position,
-          playbackState.paused,
-        ));
-      }
-    });
+  public playTrack(
+    deviceId: string,
+    contextUri?: string,
+    uris?: string[],
+    offset?: { position_ms?: number, uri?: string },
+  ) {
+    const url = `${this.config.apiBase}/me/player/play?device_id=${deviceId}`;
+
+    const body: any = {};
+    if (contextUri) {
+      body.context_uri = contextUri;
+    } else if (uris) {
+      body.uris = uris;
+    }
+    if (offset) {
+      body.offset = offset;
+    }
+
+    return this.http.put(url, body);
+  }
+
+  public togglePlay() {
+    this.player.togglePlay();
+  }
+
+  public next(device: string) {
+    return this.http.post(`${this.config.apiBase}/me/player/next`, {});
+  }
+
+  public previous(device: string) {
+    return this.http.post(`${this.config.apiBase}/me/player/previous`, {});
+  }
+
+  public setVolume(device: string, volume: number) {
+    return this.http.put(` ${this.config.apiBase}/me/player/volume?device_id=${device}&volume_percent=${volume}`, {});
+  }
+
+  public seek(device: string, position: number) {
+    return this.http.put(` ${this.config.apiBase}/me/player/seek?device_id=${device}&position_ms=${position}`, {});
   }
 
   private getTrackChanges() {
@@ -132,47 +165,6 @@ export class PlayerSpotifyService {
         ));
       }
     });
-  }
-
-  playTrack(
-    deviceId: string,
-    contextUri?: string,
-    uris?: string[],
-    offset?: { position_ms?: number, uri?: string },
-  ) {
-    const url = `${this.config.apiBase}/me/player/play?device_id=${deviceId}`;
-
-    const body: any = {};
-    if (contextUri) {
-      body.context_uri = contextUri;
-    } else if (uris) {
-      body.uris = uris;
-    }
-    if (offset) {
-      body.offset = offset;
-    }
-
-    return this.http.put(url, body);
-  }
-
-  togglePlay() {
-    this.player.togglePlay();
-  }
-
-  next(device: string) {
-    return this.http.post(`${this.config.apiBase}/me/player/next`, {});
-  }
-
-  previous(device: string) {
-    return this.http.post(`${this.config.apiBase}/me/player/previous`, {});
-  }
-
-  setVolume(device: string, volume: number) {
-    return this.http.put(` ${this.config.apiBase}/me/player/volume?device_id=${device}&volume_percent=${volume}`, {});
-  }
-
-  seek(device: string, position: number) {
-    return this.http.put(` ${this.config.apiBase}/me/player/seek?device_id=${device}&position_ms=${position}`, {});
   }
 
   disconnect() {

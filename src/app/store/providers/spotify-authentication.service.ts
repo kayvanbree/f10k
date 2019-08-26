@@ -26,6 +26,7 @@ export class SpotifyAuthenticationService {
   }
 
   refreshLogin(token: string) {
+    console.log('Refreshing with token ' + token);
     return this.http.get(`${this.config.f10kApiBase}/auth/refresh?token=${token}`);
   }
 
