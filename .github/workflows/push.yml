@@ -46,5 +46,5 @@ jobs:
         DOCKER_IMAGE_NAME: f10k
         DOCKER_IMAGE_TAG: latest
       run: |
-        docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+        docker push scubakay/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
         
