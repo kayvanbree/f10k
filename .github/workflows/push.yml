@@ -14,7 +14,11 @@ jobs:
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: run build --prod
-#    - name: Publish gh-pages
-#      uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-#      with:
-#        args: run gh-pages
+    - name: dockerize
+      uses: pangzineng/Github-Action-One-Click-Docker@master
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${ secrets.DOCKER_PASSWORD }}
+        DOCKER_IMAGE_NAME: f10k
+        DOCKER_IMAGE_TAG: latest
+        
