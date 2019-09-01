@@ -11,8 +11,9 @@ jobs:
       with:
         args: install
     - uses: actions.upload-artifact@master
-      with: node_modules
-      path: ./node_modules
+      with: 
+        name: node_modules
+        path: ./node_modules
         
   build:
     name: Build
@@ -29,8 +30,9 @@ jobs:
       with:
         args: run build --prod
     - uses: actions.upload-artifact@master
-      with: dist
-      path: ./dist
+      with: 
+        name: dist
+        path: ./dist
         
   dockerize:
     name: Dockerize
