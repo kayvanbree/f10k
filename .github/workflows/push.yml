@@ -10,7 +10,7 @@ jobs:
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: install
-    - uses: actions.upload-artifact@master
+    - uses: actions/upload-artifact@master
       with: 
         name: node_modules
         path: ./node_modules
@@ -29,7 +29,7 @@ jobs:
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: run build --prod
-    - uses: actions.upload-artifact@master
+    - uses: actions/upload-artifact@master
       with: 
         name: dist
         path: ./dist
