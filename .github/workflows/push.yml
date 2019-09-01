@@ -40,5 +40,5 @@ jobs:
         docker build -t f10k:latest .
     - name: Docker deploy
       run: |
-        docker push f10k:latest
+        docker push scubakay/f10k:latest
         
