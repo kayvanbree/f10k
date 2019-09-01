@@ -27,7 +27,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/download-artifact@master
       with:
-        name: my-dist
+        name: dist
         path: ./dist
     - name: Docker login
       env: 
