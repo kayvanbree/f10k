@@ -1,8 +1,8 @@
 on: push
 name: Build and publish
 jobs:
-  install:
-    name: Install
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -14,7 +14,31 @@ jobs:
       uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       with:
         args: run build --prod
-#    - name: Publish gh-pages
-#      uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-#      with:
-#        args: run gh-pages
+    - uses: actions/upload-artifact@master
+      with: 
+        name: dist
+        path: ./dist
+        
+  dockerize:
+    name: Dockerize
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/download-artifact@master
+      with:
+        name: dist
+        path: ./dist
+    - name: Docker login
+      env: 
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
+    - name: Docker build
+      run: |
+        docker build -t scubakay/f10k:latest .
+    - name: Docker deploy
+      run: |
+        docker push scubakay/f10k:latest
+        
