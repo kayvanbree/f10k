@@ -4,13 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --baseHref=https://kayvanbree.github.io/f10k/ --deployUrl=https://kayvanbree.github.io/f10k/",
+    "build": "ng build --prod --baseHref=http://136.144.154.241/ --deployUrl=http://136.144.154.241/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "gh-pages:help": "gh-pages --help",
-    "gh-pages": "gh-pages -d dist/f10k -r \"https://github.com/kayvanbree/f10k\" -u \"Kay van Bree <kayvanbree@gmail.com>\"",
-    "build-and-publish": "npm run build && npm run gh-pages"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
