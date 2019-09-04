@@ -57,6 +57,7 @@ const spotifyConfig = {
     'streaming',
     'user-read-playback-state'
   ],
+  authorizationUrl: environment.authorizationUrl,
   f10kApiBase: environment.f10kApiBase,
 };
 
