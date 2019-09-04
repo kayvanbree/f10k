@@ -123,8 +123,25 @@
               "devServerTarget": "f10k:serve:production"
             }
           }
+        },
+        "ngsscbuild": {
+          "builder": "angular-server-side-configuration:ngsscbuild",
+          "options": {
+            "additionalEnvironmentVariables": [
+              "F10K_API_BASE"
+            ],
+            "aotSupport": true,
+            "browserTarget": "f10k:build",
+            "ngsscEnvironmentFile": "src/environments/environment.prod.ts"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "f10k:build:production"
+            }
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "f10k"
 }

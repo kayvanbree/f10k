@@ -1,8 +1,21 @@
+import 'angular-server-side-configuration/process';
+
+/**
+ * How to use angular-server-side-configuration:
+ *
+ * Use process.env.NAME_OF_YOUR_ENVIRONMENT_VARIABLE
+ *
+ * export const environment = {
+ *   stringValue: process.env.STRING_VALUE,
+ *   stringValueWithDefault: process.env.STRING_VALUE || 'defaultValue',
+ *   numberValue: Number(process.env.NUMBER_VALUE),
+ *   numberValueWithDefault: Number(process.env.NUMBER_VALUE || 10),
+ *   booleanValue: Boolean(process.env.BOOLEAN_VALUE),
+ *   booleanValueInverted: process.env.BOOLEAN_VALUE_INVERTED !== 'false',
+ * };
+ */
+
 export const environment = {
   production: false,
-  apiBase: 'https://api.spotify.com/v1',
-  authorizationUrl: 'https://accounts.spotify.com/authorize',
-  clientId: '3a6db42ee8c14d4797f65342c9a8b67d',
-  redirectUri: 'https://kayvanbree.github.io/f10k/spotify-redirect',
-  f10kApiBase: 'https://kayvanbree.github.io/f10k/api/v1'
+  f10kApiBase: process.env.F10K_API_BASE || 'https://http://136.144.154.241:8080/f10k/api/v1'
 };

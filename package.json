@@ -1,14 +1,15 @@
 {
-  "name": "f10k",
-  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --baseHref=http://136.144.154.241/ --deployUrl=http://136.144.154.241/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ngssc": "ng run f10k:ngsscbuild:production"
   },
+  "name": "f10k",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@angular/animations": "^8.2.2",
@@ -24,6 +25,7 @@
     "@ngxs/router-plugin": "^3.5.0",
     "@ngxs/storage-plugin": "^3.5.0",
     "@ngxs/store": "^3.5.0",
+    "angular-server-side-configuration": "^8.0.0",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
