@@ -59,6 +59,7 @@ const spotifyConfig = {
   ],
   authorizationUrl: environment.authorizationUrl,
   f10kApiBase: environment.f10kApiBase,
+  apiBase: environment.spotifyApiBase,
 };
 
 @NgModule({

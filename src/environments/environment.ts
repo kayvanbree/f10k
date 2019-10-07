@@ -7,7 +7,8 @@ export const environment = {
   authorizationUrl: 'https://accounts.spotify.com/authorize',
   clientId: 'eb2f6d23379f4c99b7feb89b86526b78',
   redirectUri: 'http://localhost:4200/spotify-redirect',
-  f10kApiBase: 'http://localhost:8080/api/v1'
+  f10kApiBase: 'http://localhost:8080/api/v1',
+  spotifyApiBase: 'https://api.spotify.com/v1'
 };
 
 /*

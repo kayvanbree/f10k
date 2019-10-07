@@ -20,5 +20,6 @@ export const environment = {
   authorizationUrl: process.env.SPOTIFY_AUTHORIZATION_URL || 'https://accounts.spotify.com/authorize',
   clientId: process.env.SPOTIFY_CLIENT_ID || '3a6db42ee8c14d4797f65342c9a8b67d',
   redirectUri: process.env.F10K_REDIRECT_URI || 'http://136.144.154.241/spotify-redirect',
-  f10kApiBase: process.env.F10K_API_BASE || 'http://136.144.154.241/api/v1'
+  f10kApiBase: process.env.F10K_API_BASE || 'http://136.144.154.241/api/v1',
+  spotifyApiBase: process.env.SPOTIFY_API_BASE || 'https://api.spotify.com/v1'
 };
